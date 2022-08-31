@@ -1,0 +1,3 @@
+preámbulo
+instalación-de-librerías-necesarias-para-el-curso
+introducción-al-aprendizaje-automático
