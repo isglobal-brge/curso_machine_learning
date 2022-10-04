@@ -35,12 +35,11 @@ Este bookdown sirve como notas para el curso [Introducción al Aprendizaje autom
 **Programa**:
 
    1. Introducción al aprendizaje automático 
-   2. Modelos de Regresión Logística
-   3. Nomogramas
-   4. Árboles de clasificación y regresión (CART)
-   5. Métricas para la evaluación de modelos de predicción (curvas ROC y comparación)
-   6. Métodos de validación cruzada
-   7. Métodos para tratar datos desbalanceados
+   2. Métodos de validación cruzada
+   3. Regresión Logística
+   4. Nomogramas
+   5. Árboles de clasificación y regresión (CART)
+   6. Métodos para tratar datos desbalanceados
 
 
 
@@ -49,9 +48,7 @@ Este bookdown sirve como notas para el curso [Introducción al Aprendizaje autom
 Para poder reproducir todo el código de este libro se necesitan tener instaladas las siguientes librería
 
 ```
-install.packages(c("tidyverse", "dplyr", "magrittr", "ggplot2", "reshape2",
-                   "ez", "MANOVA.RM", "nlme", "ggeffects", "gridExtra", "lme4", 
-                   "chron", "compareGroups", "survminer", "JM", "joineRML"))
+install.packages(c("caret"))
 
 ```
 
