@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Validación cruzada | Introducción al Aprendizaje automático en ciencias de la salud</title>
+  <meta name="description" content="3 Validación cruzada | Introducción al Aprendizaje automático en ciencias de la salud" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Validación cruzada | Introducción al Aprendizaje automático en ciencias de la salud" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Validación cruzada | Introducción al Aprendizaje automático en ciencias de la salud" />
+  
+  
+  
+
+<meta name="author" content="Juan R González" />
+
+
+<meta name="date" content="2022-10-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introducción-al-aprendizaje-automático.html"/>
+<link rel="next" href="regresión-logística.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Aprendizaje Automático</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preámbulo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#instalación-de-librerías-necesarias-para-el-curso"><i class="fa fa-check"></i><b>1.1</b> Instalación de librerías necesarias para el curso</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducción-al-aprendizaje-automático.html"><a href="introducción-al-aprendizaje-automático.html"><i class="fa fa-check"></i><b>2</b> Introducción al Aprendizaje Automático</a></li>
+<li class="chapter" data-level="3" data-path="validación-cruzada.html"><a href="validación-cruzada.html"><i class="fa fa-check"></i><b>3</b> Validación cruzada</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="validación-cruzada.html"><a href="validación-cruzada.html#validación-en-un-conjunto-de-datos-externo"><i class="fa fa-check"></i><b>3.1</b> Validación en un conjunto de datos externo</a></li>
+<li class="chapter" data-level="3.2" data-path="validación-cruzada.html"><a href="validación-cruzada.html#leave-one-out-cross-validation-loocv"><i class="fa fa-check"></i><b>3.2</b> Leave-one-out cross validation (LOOCV)</a></li>
+<li class="chapter" data-level="3.3" data-path="validación-cruzada.html"><a href="validación-cruzada.html#k-fold-cross-validation-k-fold-cv"><i class="fa fa-check"></i><b>3.3</b> K-fold cross validation (K-fold CV)</a></li>
+<li class="chapter" data-level="3.4" data-path="validación-cruzada.html"><a href="validación-cruzada.html#uso-de-cv-para-estimar-el-hiper-parámetro"><i class="fa fa-check"></i><b>3.4</b> Uso de CV para estimar el hiper-parámetro</a></li>
+<li class="chapter" data-level="3.5" data-path="validación-cruzada.html"><a href="validación-cruzada.html#uso-de-bootstrap"><i class="fa fa-check"></i><b>3.5</b> Uso de bootstrap</a></li>
+<li class="chapter" data-level="3.6" data-path="validación-cruzada.html"><a href="validación-cruzada.html#imputación-de-datos-faltantes-información-extra-para-los-que-venís-al-curso"><i class="fa fa-check"></i><b>3.6</b> Imputación de datos faltantes (Información extra para los que venís al curso)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>4</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#la-función-logit-inversa"><i class="fa fa-check"></i><b>4.1</b> La función logit inversa</a></li>
+<li class="chapter" data-level="4.2" data-path="regresión-logística.html"><a href="regresión-logística.html#ejemplo-de-regresión-logística"><i class="fa fa-check"></i><b>4.2</b> Ejemplo de regresión logística</a></li>
+<li class="chapter" data-level="4.3" data-path="regresión-logística.html"><a href="regresión-logística.html#coeficientes-de-regresión-logística-como-probabilidades"><i class="fa fa-check"></i><b>4.3</b> Coeficientes de regresión logística como probabilidades</a></li>
+<li class="chapter" data-level="4.4" data-path="regresión-logística.html"><a href="regresión-logística.html#coeficientes-de-regresión-logística-como-razones-de-odds"><i class="fa fa-check"></i><b>4.4</b> Coeficientes de regresión logística como razones de odds</a></li>
+<li class="chapter" data-level="4.5" data-path="regresión-logística.html"><a href="regresión-logística.html#capacidad-predictiva-de-un-modelo-de-clasificación"><i class="fa fa-check"></i><b>4.5</b> Capacidad predictiva de un modelo de clasificación</a></li>
+<li class="chapter" data-level="4.6" data-path="regresión-logística.html"><a href="regresión-logística.html#ejemplo-de-regresión-logística-modelización-de-riesgo-diabetes"><i class="fa fa-check"></i><b>4.6</b> Ejemplo de regresión logística: modelización de riesgo diabetes</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="regresión-logística.html"><a href="regresión-logística.html#modelo-simple"><i class="fa fa-check"></i><b>4.6.1</b> Modelo simple</a></li>
+<li class="chapter" data-level="4.6.2" data-path="regresión-logística.html"><a href="regresión-logística.html#agregar-predictores-y-evaluar-el-ajuste"><i class="fa fa-check"></i><b>4.6.2</b> Agregar predictores y evaluar el ajuste</a></li>
+<li class="chapter" data-level="4.6.3" data-path="regresión-logística.html"><a href="regresión-logística.html#análisis-de-interacciones"><i class="fa fa-check"></i><b>4.6.3</b> Análisis de interacciones</a></li>
+<li class="chapter" data-level="4.6.4" data-path="regresión-logística.html"><a href="regresión-logística.html#gráfico-de-la-interacción"><i class="fa fa-check"></i><b>4.6.4</b> Gráfico de la interacción</a></li>
+<li class="chapter" data-level="4.6.5" data-path="regresión-logística.html"><a href="regresión-logística.html#uso-del-modelo-para-predecir-probabilidades"><i class="fa fa-check"></i><b>4.6.5</b> Uso del modelo para predecir probabilidades</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="regresión-logística.html"><a href="regresión-logística.html#creación-de-un-modelo-y-validación"><i class="fa fa-check"></i><b>4.7</b> Creación de un modelo y validación</a></li>
+<li class="chapter" data-level="4.8" data-path="regresión-logística.html"><a href="regresión-logística.html#nomogramas"><i class="fa fa-check"></i><b>4.8</b> Nomogramas</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción al Aprendizaje automático en ciencias de la salud</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="validación-cruzada" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Validación cruzada</h1>
+<p>La validación cruzada (CV por sus siglas en inglés) es la técnica que usamos para evaluar si un modelo está sobreajustado y para estimar cómo funcionará con nuevos datos.</p>
+<p>El sobreajuste es un peligro importante en el análisis predictivo, especialmente cuando se utilizan algoritmos de aprendizaje automático que, sin el ajuste adecuado, puede aprender datos de nuestra muestra casi a la perfección, esencialmente ajustando el ruido (o variabilidad). Cuando se utiliza un modelo de este tipo para predecir nuevos datos, con un ruido (o variabilidad) diferente, el rendimiento del modelo puede ser sorprendentemente malo. Usamos CV para ayudarnos a identificar y evitar tales situaciones. ¿Cómo podemos hacer esto? Muchos algoritmos de aprendizaje automático requieren que el usuario especifique ciertos parámetros (hiper-parámetros). Veremos más adelante que, por ejemplo, necesitaremos especificar un valor para <span class="math inline">\(m\)</span> que corresponde al número de predictores elegidos al azar que se utilizarán en cada división de árbol cuando usemos “random forest” como algoritmo de aprendizaje. Cuanto menor sea <span class="math inline">\(m\)</span>, más simple será el árbol. Podemos usar CV para elegir el valor de <span class="math inline">\(m\)</span> que minimiza la variación y reduce el sobreajuste. La regresión lineal no tiene parámetros que debe especificar el usuario, pero la CV aún nos ayuda a evaluar cuánto podría sobreajustarse un modelo a los datos de muestra.</p>
+<p>De manera breve, los algoritmos de cross-validation se pueden resumir como:</p>
+<ul>
+<li>Reserva una parte pequeña de los datos</li>
+<li>Crea (o entrena) el modelo usando el resto de datos</li>
+<li>Testa el modelo en los datos reservados.</li>
+</ul>
+<p>A continuación se describen algunas de las distintas técnicas de validación cruzada que existen.</p>
+<div id="validación-en-un-conjunto-de-datos-externo" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Validación en un conjunto de datos externo</h2>
+<p>La versión más simple de CV es el llamado método de conjunto de validación, que consta de los siguientes pasos:</p>
+<ol style="list-style-type: decimal">
+<li><em>Dividir los datos de la muestra en dos partes: un conjunto de entrenamiento y otro de validacións.</em> Los investigadores usan diferentes proporciones, pero es común seleccionar al azar el 70% de los datos como conjunto de entrenamiento y el 30% como conjunto de prueba o validación. . (Obviamente, debemos tener suficientes datos en la muestra para ajustar un modelo después de dividir los datos). Debido a que CV se basa en un muestreo aleatorio, nuestros resultados variarán a menos que usemos <code>set.seed ()</code>.</li>
+</ol>
+<p>Demostraremos usando los datos de Hitters, que es un estudio sobre bateadores de USA donde se pretende crear un modelo que prediga el salario que tendría un jugador en función de sus habilidades. La variable de interés es el salario (<code>Salary</code>) y como es una variable continua usaremos un modelo de regresión lineal para ilustrar el concepto de validación cruzada ya que este modelo es conocido de otros cursos anteriores.</p>
+<p>Es importante notar que para el aprendizaje automático necesitamos que nuestra base de datos teng casos completos. Es decir, es importante no tener missings (existen métodos para imputar datos pero está fuera de lo que cubre este curso). Los datos están en la librería ISLR que se puede instalar de CRAN. También cargamos la libería <code>tidyverse</code> que nos hará falta para el manejo de datos</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="validación-cruzada.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arm)</span>
+<span id="cb3-2"><a href="validación-cruzada.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-3"><a href="validación-cruzada.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb3-4"><a href="validación-cruzada.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># para que los resultados sean comparables entre ordenadores</span></span>
+<span id="cb3-5"><a href="validación-cruzada.html#cb3-5" aria-hidden="true" tabindex="-1"></a>Hitters_complete <span class="ot">&lt;-</span> Hitters[<span class="fu">complete.cases</span>(Hitters), ]</span>
+<span id="cb3-6"><a href="validación-cruzada.html#cb3-6" aria-hidden="true" tabindex="-1"></a>rows <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Hitters_complete), .<span class="dv">7</span> <span class="sc">*</span> <span class="fu">nrow</span>(Hitters_complete))</span>
+<span id="cb3-7"><a href="validación-cruzada.html#cb3-7" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> Hitters_complete[rows, ]</span>
+<span id="cb3-8"><a href="validación-cruzada.html#cb3-8" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> Hitters_complete[<span class="sc">-</span>rows, ]</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><em>Ajustar un modelo en el conjunto de entrenamiento</em> usando un procedimiento de selección de variables apropiado. Crearemos dos modelos para comparar: uno con todas las variables, luego otro con solo las variables elegidas por <code>regsubsets ()</code>.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="validación-cruzada.html#cb4-1" aria-hidden="true" tabindex="-1"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Salary <span class="sc">~</span>., <span class="at">data =</span> train)</span>
+<span id="cb4-2"><a href="validación-cruzada.html#cb4-2" aria-hidden="true" tabindex="-1"></a>select_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CRBI <span class="sc">+</span> Division <span class="sc">+</span> PutOuts, <span class="at">data =</span> train)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li><em>Utilizar ese modelo para predecir en el conjunto de prueba.</em> El rendimiento en el conjunto de prueba es la estimación de CV para el rendimiento fuera de la muestra del modelo. Para ello se puede usar cualquier medida de ajuste, que para los modelos lineales puede ser el <code>rmse</code> (root mean square error). Veremos más adelante otras medidas de ajuste cuando nuestra variable de interés es categórica (e.g. caso/control, responde/no responde, …)</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="validación-cruzada.html#cb5-1" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="cf">function</span>(fitted, actual){</span>
+<span id="cb5-2"><a href="validación-cruzada.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">mean</span>((fitted <span class="sc">-</span> actual)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb5-3"><a href="validación-cruzada.html#cb5-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-4"><a href="validación-cruzada.html#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="validación-cruzada.html#cb5-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Model =</span> <span class="fu">c</span>(<span class="st">&quot;Modelo completo muestra entrenamiento&quot;</span>,</span>
+<span id="cb5-6"><a href="validación-cruzada.html#cb5-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Modelo seleccionado muestra entrenamiento&quot;</span>,</span>
+<span id="cb5-7"><a href="validación-cruzada.html#cb5-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Modelo completo muestra validación&quot;</span>,</span>
+<span id="cb5-8"><a href="validación-cruzada.html#cb5-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Modelo seleccionado muestra validación&quot;</span>),</span>
+<span id="cb5-9"><a href="validación-cruzada.html#cb5-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">RMSE =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">rmse</span>(<span class="fu">fitted</span>(full_model), train<span class="sc">$</span>Salary),</span>
+<span id="cb5-10"><a href="validación-cruzada.html#cb5-10" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">rmse</span>(<span class="fu">fitted</span>(select_model), train<span class="sc">$</span>Salary),</span>
+<span id="cb5-11"><a href="validación-cruzada.html#cb5-11" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">rmse</span>(<span class="fu">predict</span>(full_model, <span class="at">newdata =</span> test), test<span class="sc">$</span>Salary), </span>
+<span id="cb5-12"><a href="validación-cruzada.html#cb5-12" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">rmse</span>(<span class="fu">predict</span>(select_model, <span class="at">newdata =</span> test), test<span class="sc">$</span>Salary)),<span class="dv">1</span>))</span>
+<span id="cb5-13"><a href="validación-cruzada.html#cb5-13" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div>
+<pre><code>                                      Model  RMSE
+1     Modelo completo muestra entrenamiento 297.8
+2 Modelo seleccionado muestra entrenamiento 326.1
+3        Modelo completo muestra validación 368.2
+4    Modelo seleccionado muestra validación 306.4</code></pre>
+<p>Podemos ver que el modelo completo está sobreajustado — el RMSE dentro de la muestra es mejor que el RMSE fuera de muestra — mientras que el modelo seleccionado elegido por <code>regsubsets ()</code> usando BIC no está sobreajustado. De hecho, el modelo seleccionado funciona mucho mejor fuera de la muestra que dentro de la muestra, aunque este resultado en particular es probablemente una cuestión de azar, una función de división aleatoria que estamos usando. Sin embargo, en general, estos resultados ilustran el peligro de la complejidad del modelo y por qué tiene sentido elegir predictores utilizando medidas de ajuste del modelo que penalicen la complejidad. Los modelos simples tienden a generalizar mejor. Esta figura muestra estas relaciones:</p>
+<div class="figure">
+<img src="figures/overfit.png" alt="" />
+<p class="caption">Sobreajuste</p>
+</div>
+</div>
+<div id="leave-one-out-cross-validation-loocv" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Leave-one-out cross validation (LOOCV)</h2>
+<p>Este método funciona de la siguiente manera:</p>
+<ul>
+<li>Extrae una observación de los datos y usa el resto para entrenar el modelo</li>
+<li>Testa el modelo con la observación que ha sido extraída en el paso anterior y guarda el error asociado a esa predicción</li>
+<li>Repite el proceso para todos los puntos</li>
+<li>Calcula el error de predicción global usando el promedio de todos los errores estimados en el paso 2.</li>
+</ul>
+<p>Veremos más adelante cómo hacer estos cálculos con una libería específica. Aquellos que tengáis un nivel medio/alto de R quizás os podríais plantear este ejercicio (no es obligatorio - pondré la solución en moodle)</p>
+<table style="width:75%;">
+<colgroup>
+<col width="75%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>EJERCICIO (no obligatorio)</strong>:</td>
+</tr>
+<tr class="even">
+<td align="left">Crea una función R que lleve a cabo el procedimiento de LOOCV y estima el valor de LOOCV para el modelo completo (<code>full_model</code>) y el modelo seleccionado (<code>select_model</code>) del ejemplo anterior.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="k-fold-cross-validation-k-fold-cv" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> K-fold cross validation (K-fold CV)</h2>
+<p>La diferencia con LOOCV es que este método evalúa el comportamiento del modelo en un conjunto de datos de distingo tamaño (K). El algoritmo es el siguiente:</p>
+<ul>
+<li>Separa los datos en k-subconjuntos (k-fold) de forma aleatoria</li>
+<li>Guarda uno de los subconjuntos de datos y entrena el modelo con el resto de individuos</li>
+<li>Testa el modelo con los datos resevados y guarda el error de predicción promedio.</li>
+<li>Repite el proceso hasta que los k subconjuntos hayan servido de muestra test.</li>
+<li>Calcula el promedio de los k errores que han sido guardados. Este valor es el error de cross-validación y nos sirve para evaluar el comportamiento de nuestro modelo como si lo usáramos en una base de datos externa.</li>
+</ul>
+<p>La principal ventaja de este método respecto a LOOCV es el coste computacional. Otra ventaja que no es tan obvia, es que este método a menudo da mejores estimaciones del error del modelo que LOOCV<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Una pregunta típica es cómo se escoje el valor óptimo de K. Valores pequeños de K da estimaciones sesgadas. Por otro lado, valores grandes de K están menos sesgados, pero tienen mucha variabilidad. En la práctica, normalmente se usan valores de k = 5 or k = 10, ya que estos valores se han mostrado de forma empírica como los que tienen tasas de error estimadas no demasiado sesgadas ni con mucha varianza.</p>
+<p>Al igual que en el caso anterior veremos unas liberías adecuadas para hacer estos análisis de forma eficiente. De momento se pòdría realizar el siguiente ejercicio (pondré la solución - no es obligatorio):</p>
+<table style="width:75%;">
+<colgroup>
+<col width="75%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>EJERCICIO (no obligatorio)</strong>:</td>
+</tr>
+<tr class="even">
+<td align="left">Crea una función R que lleve a cabo el procedimiento de K-fold CV y estima el valor de K-fold CV para el modelo completo (<code>full_model</code>) y el modelo seleccionado (<code>select_model</code>) del ejemplo anterior. Haz que la función tenga un parámetro que dependa de K, y da los resultados para K=5 y K=10.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="uso-de-cv-para-estimar-el-hiper-parámetro" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Uso de CV para estimar el hiper-parámetro</h2>
+<p>Si el algoritmo de aprendizaje automático que vamos a utilizar para realizar predicciones tiene un parámetro que controla el comportamiento (por ejemplo grado de polinomio en regresión no lineal, o el número de nodos en árboles de clasificación) éste podría elegirse de forma que minimizara el error de clasificación. Esta selección también puede dar problemas de sobre ajuste ya que podríamos seleccionar de forma que ajustara perféctamente a nuestros datos.</p>
+<p>Para evitar el problema, se puede utilizar cualquiera de las técnicas vistas con anterioridad. Aquí tenemos un ejemplo donde se ha usado un modelo de aprendizaje que se basa en introducir términos polinómicos de varaibles para realizar una mejor predicción mediante regresión lineal usando sólo términos lineales.</p>
+<div class="figure">
+<img src="figures/cv_hyper.png" style="width:60.0%" alt="" />
+<p class="caption">Sobreajuste según un hiper-parámetro</p>
+</div>
+</div>
+<div id="uso-de-bootstrap" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Uso de bootstrap</h2>
+<p>Si en vez de partir nuestra muestra en <span class="math inline">\(K\)</span> submuestras, realizamos una selección aleatoria de muestras con reemplazamiento, nos encontraremos ante una aproximación de tipo <em>bootstrap</em> que es una técnica muy usada en estadística para hacer inferencia cuando la distribución del estadístico es desconocida basada en el remuestreo [<a href="https://biocosas.github.io/R/100_bootstrap.html">aquí</a> tenéis una descripción sencilla de esta metodología].</p>
+<div class="figure">
+<img src="figures/bootstrap_1.jpg" style="width:60.0%" alt="" />
+<p class="caption">Boostrap</p>
+</div>
+<div class="figure">
+<img src="figures/bootstrap_2.png" style="width:60.0%" alt="" />
+<p class="caption">Boostrap</p>
+</div>
+<p>De manera que el procedimiento <em>bootstrap</em> aplicado a regresión sería:</p>
+<ul>
+<li>Sacar una muestra aleatoria con remplazamiento de tamaño <span class="math inline">\(n\)</span> de nuestros datos (tenemos <span class="math inline">\(n\)</span> observaciones)</li>
+<li>Guardar las muestras que no han sido seleccionadas (datos de prueba)</li>
+<li>Entrena el modelo con la muestra <em>bootstrap</em></li>
+<li>Testa el modelo con los datos de prueba y guarda el error de predicción promedio.</li>
+<li>Repite el proceso <span class="math inline">\(B\)</span> veces</li>
+<li>Calcula el promedio de los <span class="math inline">\(B\)</span> errores que han sido guardados. Este valor es el error <em>bootstrap</em> y nos sirve para evaluar el comportamiento de nuestro modelo.</li>
+</ul>
+</div>
+<div id="imputación-de-datos-faltantes-información-extra-para-los-que-venís-al-curso" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Imputación de datos faltantes (Información extra para los que venís al curso)</h2>
+<p>La mayoría de métodos para aprendizaje automático requiren casos completos. Sin embargo, los datos reales a menudo tienen observaciones faltantes. La función <code>lm ()</code>, analiza casos completos sin indicar nada al usuario, pero … ¿Deberíamos eliminar estas filas o imputar las observaciones que faltan? Casi siempre es mejor imputar, aunque, en la práctica puede que no valga la pena imputar algunas observaciones faltantes, ya que eliminarlas no suele cambiar el ajuste en absoluto. La imputación de datos faltantes es un tema extenso y complicado; aquí haremos una breve introducción y discutiremos los principales temas a tener en cuenta.</p>
+<p>Tipos de valores perdidos:</p>
+<ul>
+<li><p><em>Falta completamente al azar (MCAR por sus siglas en inglés)</em>: la probabilidad de que falte una observación es la misma para todos los casos. Eliminar los casos que faltan en esta instancia no causará sesgos, aunque es posible que perdamos información.</p></li>
+<li><p><em>Missing at random (MAR pos sus siglas en inglés)</em>: la probabilidad de que falte una observación depende de un mecanismo conocido. Por ejemplo, es menos probable que algunos grupos respondan encuestas. Si conocemos la pertenencia a un grupo, podemos eliminar las observaciones faltantes siempre que incluyamos el grupo como factor en una regresión. Sin embargo, generalmente podemos hacer algo mejor que simplemente eliminar estos casos.</p></li>
+<li><p><em>Missing not at random (MNAR por sus siglas en inglés) </em>: la probabilidad de que falte una observación depende de algún mecanismo desconocido — una variable no observada. Tratar los problemas del MNAR es difícil o incluso imposible.</p></li>
+</ul>
+<p>Nos centraremos en los problemas MAR. Una solución simple es completar o <em>imputar</em> los valores MAR. Hay dos estrategias principales:</p>
+<p><strong>Imputación simple</strong> reemplaza los valores perdidos según una estadística univariante o un modelo de regresión multivariable. Existen muchas librerías que implementan diferentes métodos (en este curso veremos algunas). En la imputación con medianas imputamos los datos faltantes usando la mediana de la variable que presenta datos faltantes (La mediana es mejor que la media cuando los datos de la columna están sesgados). Podemos imputar también usando KNN o <em>random forest</em> creando un modelo multivariante de las observaciones faltantes usando otras variables y usar ese modelo para predecir los valores faltantes.</p>
+<p>El problema con la imputación simple, teóricamente, es que la variabilidad de la variable imputada es menor de lo que habría sido la variabilidad en la variable real, creando un sesgo hacia 0 en los coeficientes. Por tanto, mientras que la eliminación pierde información, la imputación única puede provocar sesgos. (Sin embargo, no me queda claro cuán grande es este problema en la práctica).</p>
+<p>La <strong>imputación múltiple</strong> aborda estos problemas imputando los valores faltantes con un modelo multivariante, pero agregando la variabilidad de nuevo al volver a incluir la variación del error que normalmente veríamos en los datos. El término “múltiple” en la imputación múltiple se refiere a los múltiples conjuntos de datos creados en el proceso de estimación de los coeficientes de regresión. Los pasos son los siguientes:</p>
+<ol style="list-style-type: decimal">
+<li><p>Crear <span class="math inline">\(m\)</span> conjuntos de datos completos con valores perdidos imputados. Las imputaciones se realizan extrayendo aleatoriamente distribuciones de valores plausibles para cada vector de columna (variables).</p></li>
+<li><p>Ajustar un modelo lineal en cada conjunto de datos imputados y almacene <span class="math inline">\(\hat \beta\)</span>s y SE.</p></li>
+<li><p>Promediar los <span class="math inline">\(\hat \beta\)</span>s y combinar los SE para producir coeficientes basados en múltiples conjuntos de datos imputados. Específicamente,</p></li>
+</ol>
+<p><span class="math display">\[\hat \beta_ {j} = \frac {1} {m} \sum_ {i} \hat \beta_ {ij}\]</span>
+y</p>
+<p><span class="math display">\[s ^ 2_j = \frac {1} {m} \sum_{i} s^2_{ij} + var \hat \beta_ {ij} (1 + 1 / m),\]</span></p>
+<p>donde <span class="math inline">\(\hat \beta_{ij}\)</span> y <span class="math inline">\(s_{ij}\)</span> son las estimaciones y los errores estándar del resultado imputado <span class="math inline">\(i^{th}\)</span> para <span class="math inline">\(i=1, ..., m\)</span> y para el parámetro <span class="math inline">\(j^{th}\)</span>.</p>
+<p>La imputación múltiple funciona mejor para la descripción que para la predicción, y probablemente sea preferible a la imputación única si sólo queremos estimar coeficientes. Para la predicción (como es el caso del aprendizaje automático), normalmente bastará con utilizar imputación simple.</p>
+<p>Demostraremos métodos de imputación utilizando los datos de Carseats del paquete ISLR. Este es un conjunto de datos simulado de ventas de asientos de coche, del cual eliminaremos aleatoriamente el 25% de las observaciones usando la función <code>prodNA ()</code> en el paquete <code>missForest</code> (teniendo cuidado de dejar la variable de resultado, Sales, intacta).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="validación-cruzada.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(missForest)</span>
+<span id="cb7-2"><a href="validación-cruzada.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Carseats, <span class="at">package=</span><span class="st">&quot;ISLR&quot;</span>)</span>
+<span id="cb7-3"><a href="validación-cruzada.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(Carseats<span class="sc">$</span>ShelveLoc) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Bad&quot;</span>,<span class="st">&quot;Medium&quot;</span>,<span class="st">&quot;Good&quot;</span>) <span class="co"># Reordenamos los niveles de la variable</span></span>
+<span id="cb7-4"><a href="validación-cruzada.html#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="validación-cruzada.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb7-6"><a href="validación-cruzada.html#cb7-6" aria-hidden="true" tabindex="-1"></a>carseats_missx <span class="ot">&lt;-</span> <span class="fu">prodNA</span>(Carseats[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">noNA=</span>.<span class="dv">25</span>)</span>
+<span id="cb7-7"><a href="validación-cruzada.html#cb7-7" aria-hidden="true" tabindex="-1"></a>carseats_miss <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Sales=</span>Carseats[, <span class="dv">1</span>], carseats_missx)</span>
+<span id="cb7-8"><a href="validación-cruzada.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(carseats_miss)</span></code></pre></div>
+<pre><code>Rows: 400
+Columns: 11
+$ Sales       &lt;dbl&gt; 9.50, 11.22, 10.06, 7.40, 4.15, 10.81, 6.63, 11.85, 6.54, 4.69, 9.01, 11.96, 3.98, 10.96, 11.17, 8.71, 7.58, 12.29, 1~
+$ CompPrice   &lt;dbl&gt; 138, 111, 113, 117, 141, 124, 115, NA, NA, NA, 121, 117, NA, 115, 107, NA, 118, NA, 110, 129, 125, 134, 128, NA, 145,~
+$ Income      &lt;dbl&gt; 73, 48, 35, 100, 64, 113, NA, 81, 110, 113, 78, 94, NA, 28, 117, 95, 32, 74, 110, 76, NA, NA, 46, NA, 119, 32, 115, 1~
+$ Advertising &lt;dbl&gt; 11, 16, NA, 4, 3, 13, NA, 15, 0, 0, 9, 4, 2, NA, 11, 5, NA, 13, 0, 16, 2, 12, 6, 0, 16, 0, 11, 0, NA, 15, NA, 16, 12,~
+$ Population  &lt;dbl&gt; 276, 260, 269, NA, 340, 501, 45, 425, 108, 131, 150, 503, NA, 29, 148, 400, 284, 251, 408, 58, 367, 239, 497, 292, 29~
+$ Price       &lt;dbl&gt; 120, NA, NA, 97, 128, 72, 108, 120, NA, 124, 100, NA, NA, NA, 118, 144, 110, 131, 68, 121, NA, 109, 138, NA, 113, 82,~
+$ ShelveLoc   &lt;fct&gt; Bad, NA, Good, NA, Bad, Bad, Good, NA, Good, Good, Bad, Medium, NA, Medium, Medium, Good, Medium, Medium, Medium, Goo~
+$ Age         &lt;dbl&gt; 42, 65, NA, 55, 38, NA, 71, 67, 76, 76, 26, 50, NA, 53, 52, 76, 63, 52, 46, 69, NA, NA, NA, 79, 42, 54, 50, 64, NA, 5~
+$ Education   &lt;dbl&gt; NA, 10, 12, NA, 13, 16, 15, 10, 10, 17, 10, 13, NA, NA, NA, 18, 13, 10, 17, 12, 18, NA, NA, NA, 12, 11, 11, 17, 11, 1~
+$ Urban       &lt;fct&gt; NA, Yes, Yes, Yes, Yes, NA, NA, Yes, No, NA, NA, Yes, Yes, Yes, Yes, No, Yes, Yes, No, NA, Yes, No, Yes, NA, Yes, No,~
+$ US          &lt;fct&gt; Yes, Yes, Yes, Yes, No, Yes, No, Yes, NA, Yes, Yes, Yes, No, Yes, Yes, No, No, NA, Yes, Yes, NA, Yes, No, No, NA, No,~</code></pre>
+<p>Observamos que hay datos faltantes. Podemos tener una estadística global de la falta de información que hay en nuestros tanto de forma numérica mediante la librería <code>skimr</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="validación-cruzada.html#cb9-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(carseats_miss)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-6">Table 3.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">carseats_miss</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">400</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">11</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">factor</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ShelveLoc</td>
+<td align="right">93</td>
+<td align="right">0.77</td>
+<td align="left">FALSE</td>
+<td align="right">3</td>
+<td align="left">Goo: 164, Bad: 73, Med: 70</td>
+</tr>
+<tr class="even">
+<td align="left">Urban</td>
+<td align="right">101</td>
+<td align="right">0.75</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">Yes: 207, No: 92</td>
+</tr>
+<tr class="odd">
+<td align="left">US</td>
+<td align="right">104</td>
+<td align="right">0.74</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">Yes: 193, No: 103</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Sales</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">7.50</td>
+<td align="right">2.82</td>
+<td align="right">0</td>
+<td align="right">5.39</td>
+<td align="right">7.49</td>
+<td align="right">9.32</td>
+<td align="right">16.27</td>
+<td align="left">▁▆▇▃▁</td>
+</tr>
+<tr class="even">
+<td align="left">CompPrice</td>
+<td align="right">94</td>
+<td align="right">0.76</td>
+<td align="right">123.88</td>
+<td align="right">14.97</td>
+<td align="right">77</td>
+<td align="right">115.00</td>
+<td align="right">123.00</td>
+<td align="right">134.00</td>
+<td align="right">161.00</td>
+<td align="left">▁▃▇▆▂</td>
+</tr>
+<tr class="odd">
+<td align="left">Income</td>
+<td align="right">100</td>
+<td align="right">0.75</td>
+<td align="right">68.63</td>
+<td align="right">27.85</td>
+<td align="right">21</td>
+<td align="right">43.50</td>
+<td align="right">68.50</td>
+<td align="right">90.25</td>
+<td align="right">120.00</td>
+<td align="left">▆▆▇▆▅</td>
+</tr>
+<tr class="even">
+<td align="left">Advertising</td>
+<td align="right">94</td>
+<td align="right">0.76</td>
+<td align="right">6.70</td>
+<td align="right">6.71</td>
+<td align="right">0</td>
+<td align="right">0.00</td>
+<td align="right">5.00</td>
+<td align="right">12.00</td>
+<td align="right">29.00</td>
+<td align="left">▇▃▃▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">Population</td>
+<td align="right">107</td>
+<td align="right">0.73</td>
+<td align="right">268.47</td>
+<td align="right">147.29</td>
+<td align="right">10</td>
+<td align="right">144.00</td>
+<td align="right">272.00</td>
+<td align="right">402.00</td>
+<td align="right">509.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">Price</td>
+<td align="right">96</td>
+<td align="right">0.76</td>
+<td align="right">115.34</td>
+<td align="right">24.02</td>
+<td align="right">24</td>
+<td align="right">100.75</td>
+<td align="right">117.00</td>
+<td align="right">131.00</td>
+<td align="right">191.00</td>
+<td align="left">▁▂▇▅▁</td>
+</tr>
+<tr class="odd">
+<td align="left">Age</td>
+<td align="right">104</td>
+<td align="right">0.74</td>
+<td align="right">52.88</td>
+<td align="right">16.04</td>
+<td align="right">25</td>
+<td align="right">39.00</td>
+<td align="right">54.00</td>
+<td align="right">65.00</td>
+<td align="right">80.00</td>
+<td align="left">▇▆▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">Education</td>
+<td align="right">107</td>
+<td align="right">0.73</td>
+<td align="right">13.82</td>
+<td align="right">2.63</td>
+<td align="right">10</td>
+<td align="right">11.00</td>
+<td align="right">14.00</td>
+<td align="right">16.00</td>
+<td align="right">18.00</td>
+<td align="left">▇▇▃▆▇</td>
+</tr>
+</tbody>
+</table>
+<p>Comprobamos como la falta de información en las variables (excepto ‘Sales’) es de aproximadamente el 25% (columna <code>complete_rate</code> ~ 75%). Pero si tuviéramos que analizar datos de dos o más covariables, el porcentaje de datos completos disminuiría radicalmente.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="validación-cruzada.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Total de individuos</span></span>
+<span id="cb10-2"><a href="validación-cruzada.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(carseats_miss)</span></code></pre></div>
+<pre><code>[1] 400</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="validación-cruzada.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Total de individuos con casos completos</span></span>
+<span id="cb12-2"><a href="validación-cruzada.html#cb12-2" aria-hidden="true" tabindex="-1"></a>carseats_miss <span class="sc">%&gt;%</span> <span class="fu">complete.cases</span>() <span class="sc">%&gt;%</span> <span class="fu">sum</span>()</span></code></pre></div>
+<pre><code>[1] 23</code></pre>
+<p>Es decir, si tuviéramos que estimar un modelo con todas las variables de nuestra base de datos sólo dispondríamos de información efectiva para 23 individuos del total de 400.</p>
+<p>La librería <code>VIM</code> nos puede ayudar a tener esta información de forma gráfica:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="validación-cruzada.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span>
+<span id="cb14-2"><a href="validación-cruzada.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aggr</span>(carseats_miss)</span></code></pre></div>
+<p><img src="fig_out/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Ahora faltan muchas observaciones. Cuando ajustamos un modelo de regresión para la variable Sales observamos que <code>lm ()</code> analiza casos completos y se estima un modelo basado en un subconjunto muy pequeño de datos.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="validación-cruzada.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Sales <span class="sc">~</span> CompPrice <span class="sc">+</span> Income <span class="sc">+</span> Advertising <span class="sc">+</span> Population <span class="sc">+</span> Price, <span class="at">data =</span> carseats_miss)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = Sales ~ CompPrice + Income + Advertising + Population + 
+    Price, data = carseats_miss)
+
+Coefficients:
+(Intercept)    CompPrice       Income  Advertising   Population        Price  
+    6.23698      0.10467      0.01373      0.12638     -0.00121     -0.11283  </code></pre>
+<p>Sólo tenemos 93 observaciones de las 400 originales! Demostraremos la imputación múltiple usando la función <code>mice ()</code> de la librería <code>mice</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="validación-cruzada.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb17-2"><a href="validación-cruzada.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Carseats)</span></code></pre></div>
+<pre><code> [1] &quot;Sales&quot;       &quot;CompPrice&quot;   &quot;Income&quot;      &quot;Advertising&quot; &quot;Population&quot;  &quot;Price&quot;       &quot;ShelveLoc&quot;   &quot;Age&quot;         &quot;Education&quot;  
+[10] &quot;Urban&quot;       &quot;US&quot;         </code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="validación-cruzada.html#cb19-1" aria-hidden="true" tabindex="-1"></a>carseats_imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(carseats_miss, <span class="at">printFlag =</span> F)</span></code></pre></div>
+<p>El objeto <code>carseats_imp</code> incluye (entre muchas otras cosas) <span class="math inline">\(m\)</span> conjuntos de datos imputados (la configuración predeterminada es <span class="math inline">\(m\)</span> = 5). Los conjuntos de datos imputados difieren porque las imputaciones se extraen aleatoriamente de distribuciones de valores plausibles. Podemos visualizar la variabilidad de los predictores en estos conjuntos de datos imputados usando la función <code>densityplot ()</code>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="validación-cruzada.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
+<span id="cb20-2"><a href="validación-cruzada.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">densityplot</span>(carseats_imp)</span></code></pre></div>
+<p><img src="fig_out/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Las líneas azules continuas representan la distribución real de los predictores, mientras que las líneas rojas muestran las distribuciones imputadas. El siguiente paso es usar estos conjuntos de datos imputados para promediar los <span class="math inline">\(\beta\)</span>s y los SE utilizando la función <code>pool ()</code> de la librería <code>mice</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="validación-cruzada.html#cb21-1" aria-hidden="true" tabindex="-1"></a>carseats_model_imp <span class="ot">&lt;-</span> <span class="fu">with</span>(<span class="at">data =</span> carseats_imp, </span>
+<span id="cb21-2"><a href="validación-cruzada.html#cb21-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">exp =</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> CompPrice <span class="sc">+</span> Income <span class="sc">+</span> Advertising <span class="sc">+</span> Population <span class="sc">+</span> Price))</span>
+<span id="cb21-3"><a href="validación-cruzada.html#cb21-3" aria-hidden="true" tabindex="-1"></a>mi <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">pool</span>(carseats_model_imp))</span></code></pre></div>
+<p>Estos coeficientes son similares a los del modelo anterior ajustado utilizando los datos no imputados, pero deberían estar más cerca de los valores de la población porque, en lugar de simplemente eliminar los casos incompletos, utiliza información de distribución para hacer suposiciones fundamentadas sobre los datos faltantes. La imputación múltiple funciona mejor para fines de descripción — estimar coeficientes para informar en un artículo académico, por ejemplo — pero usarla para predecir nuevos datos es incómodo o imposible, por las siguientes razones:</p>
+<ul>
+<li>Si los nuevos datos están completos, podemos utilizar las estimaciones de coeficientes derivadas de la imputación múltiple en una ecuación de regresión para la predicción. Pero esto es difícil ya que hay que hacerlo manualmente. Usamos los datos originales de Carseats como ilustración.</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="validación-cruzada.html#cb22-1" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> mi[<span class="dv">1</span>, <span class="dv">2</span>] <span class="sc">+</span> </span>
+<span id="cb22-2"><a href="validación-cruzada.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  mi[<span class="dv">2</span>, <span class="dv">2</span>]<span class="sc">*</span>Carseats<span class="sc">$</span>CompPrice <span class="sc">+</span></span>
+<span id="cb22-3"><a href="validación-cruzada.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  mi[<span class="dv">3</span>, <span class="dv">2</span>]<span class="sc">*</span>Carseats<span class="sc">$</span>Income <span class="sc">+</span></span>
+<span id="cb22-4"><a href="validación-cruzada.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  mi[<span class="dv">4</span>, <span class="dv">2</span>]<span class="sc">*</span>Carseats<span class="sc">$</span>Advertising <span class="sc">+</span></span>
+<span id="cb22-5"><a href="validación-cruzada.html#cb22-5" aria-hidden="true" tabindex="-1"></a>  mi[<span class="dv">5</span>, <span class="dv">2</span>]<span class="sc">*</span>Carseats<span class="sc">$</span>Population <span class="sc">+</span></span>
+<span id="cb22-6"><a href="validación-cruzada.html#cb22-6" aria-hidden="true" tabindex="-1"></a>  mi[<span class="dv">6</span>, <span class="dv">2</span>]<span class="sc">*</span>Carseats<span class="sc">$</span>Price</span>
+<span id="cb22-7"><a href="validación-cruzada.html#cb22-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-8"><a href="validación-cruzada.html#cb22-8" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb22-9"><a href="validación-cruzada.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(preds)</span></code></pre></div>
+<pre><code>[1]  9.044928 10.251755  9.775482  8.417813  7.358304 12.816057</code></pre>
+<ul>
+<li>Si los nuevos datos no están completos, entonces estos coeficientes imputados son inútiles para predecir en filas con observaciones faltantes. Esto, por ejemplo, es el resultado de intentar predecir utilizando los datos con observaciones faltantes.</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="validación-cruzada.html#cb24-1" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> mi[<span class="dv">1</span>, <span class="dv">2</span>] <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="validación-cruzada.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  mi[<span class="dv">2</span>, <span class="dv">2</span>]<span class="sc">*</span>carseats_miss<span class="sc">$</span>CompPrice <span class="sc">+</span></span>
+<span id="cb24-3"><a href="validación-cruzada.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  mi[<span class="dv">3</span>, <span class="dv">2</span>]<span class="sc">*</span>carseats_miss<span class="sc">$</span>Income <span class="sc">+</span></span>
+<span id="cb24-4"><a href="validación-cruzada.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  mi[<span class="dv">4</span>, <span class="dv">2</span>]<span class="sc">*</span>carseats_miss<span class="sc">$</span>Advertising <span class="sc">+</span></span>
+<span id="cb24-5"><a href="validación-cruzada.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  mi[<span class="dv">5</span>, <span class="dv">2</span>]<span class="sc">*</span>carseats_miss<span class="sc">$</span>Population <span class="sc">+</span></span>
+<span id="cb24-6"><a href="validación-cruzada.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  mi[<span class="dv">6</span>, <span class="dv">2</span>]<span class="sc">*</span>carseats_miss<span class="sc">$</span>Price</span>
+<span id="cb24-7"><a href="validación-cruzada.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-8"><a href="validación-cruzada.html#cb24-8" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb24-9"><a href="validación-cruzada.html#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(preds)</span></code></pre></div>
+<pre><code>[1]  9.044928        NA        NA        NA  7.358304 12.816057</code></pre>
+<ul>
+<li><p>La imputación múltiple, por lo tanto, no resuelve el principal problema al que nos enfrentamos a menudo con los datos faltantes, que es que, aunque hayamos ajustado con éxito un modelo en nuestros datos, el conjunto de validación también puede tener observaciones faltantes, y nuestras predicciones utilizando esos datos puede no poder realizarse.</p></li>
+<li><p>Podríamos usar uno de los conjuntos de datos imputados, pero entonces ya no estamos haciendo imputación múltiple sino imputación simple. En ese momento, los métodos disponibles en el paquete <code>mice</code> ya no ofrecen ninguna ventaja especial sobre los de los paquetes <code>caret</code> y <code>missForest</code>. De hecho, podrían ser peores ya que la función <code>mice ()</code> no fue diseñado para producir la mejor imputación individual, sino más bien una gama de imputaciones plausibles.</p></li>
+</ul>
+<p>Usando <code>caret</code>, podemos hacer una imputación simple usando knnImpute, medianImpute o bagImpute. Estos métodos solo funcionan para variables numéricas, por lo que crearemos una función personalizada para convertir los factores — Shelveloc, Urban y US — en números enteros. (Al usar el conjunto de datos imputados para la regresión, podríamos dejar estas variables como números enteros, siempre que los valores enteros correspondan a los niveles de los factores).</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="validación-cruzada.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb26-2"><a href="validación-cruzada.html#cb26-2" aria-hidden="true" tabindex="-1"></a>make_df_numeric <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb26-3"><a href="validación-cruzada.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="fu">sapply</span>(df, <span class="cf">function</span>(x) <span class="fu">as.numeric</span>(x)))</span>
+<span id="cb26-4"><a href="validación-cruzada.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb26-5"><a href="validación-cruzada.html#cb26-5" aria-hidden="true" tabindex="-1"></a>carseats_miss_num <span class="ot">&lt;-</span> <span class="fu">make_df_numeric</span>(carseats_miss)</span>
+<span id="cb26-6"><a href="validación-cruzada.html#cb26-6" aria-hidden="true" tabindex="-1"></a>med_imp <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="fu">preProcess</span>(carseats_miss_num, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;medianImpute&quot;</span>)), carseats_miss_num)</span>
+<span id="cb26-7"><a href="validación-cruzada.html#cb26-7" aria-hidden="true" tabindex="-1"></a>knn_imp <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="fu">preProcess</span>(carseats_miss_num, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;knnImpute&quot;</span>)), carseats_miss_num)</span>
+<span id="cb26-8"><a href="validación-cruzada.html#cb26-8" aria-hidden="true" tabindex="-1"></a>bag_imp <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="fu">preProcess</span>(carseats_miss_num, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;bagImpute&quot;</span>)), carseats_miss_num)</span></code></pre></div>
+<p>El paquete <code>missForest</code> ofrece otra solución de imputación única, que es más simple que las funciones de <code>caret</code> porque maneja datos categóricos automáticamente. Si bien <code>missForest</code> funciona bien para conjuntos de datos pequeños y proporciona imputaciones de buena calidad, es muy lento en conjuntos de datos grandes. De hecho, lo mismo ocurrirá con la función <code>bagImpute ()</code> de <code>caret</code>. En tales casos, podría tener sentido usar la función <code>medianImpute ()</code> de <code>caret</code> en su lugar que es muy rápida.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="validación-cruzada.html#cb27-1" aria-hidden="true" tabindex="-1"></a>mf_imp <span class="ot">&lt;-</span> <span class="fu">missForest</span>(carseats_miss, <span class="at">verbose =</span> F)</span></code></pre></div>
+<pre><code>  missForest iteration 1 in progress...done!
+  missForest iteration 2 in progress...done!
+  missForest iteration 3 in progress...done!
+  missForest iteration 4 in progress...done!
+  missForest iteration 5 in progress...done!
+  missForest iteration 6 in progress...done!
+  missForest iteration 7 in progress...done!</code></pre>
+<p>Comparemos los errores asociados con estos diferentes métodos de imputación. Podemos hacer esto porque, habiendo creado las observaciones faltantes en primer lugar, podemos comparar las observaciones imputadas con las observaciones verdaderas calculando la suma de los cuadrados de la diferencia. Para las imputaciones usando <code>mice ()</code> calculamos los errores para cada uno de los 5 conjuntos de datos imputados. Los resultados de <code>knnImpute ()</code> no son comparables porque la función automáticamente centra y escala las variables y los hemos omitido.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="validación-cruzada.html#cb29-1" aria-hidden="true" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Method =</span> <span class="fu">c</span>(<span class="st">&quot;mice 1&quot;</span>, </span>
+<span id="cb29-2"><a href="validación-cruzada.html#cb29-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 2&quot;</span>, </span>
+<span id="cb29-3"><a href="validación-cruzada.html#cb29-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 3&quot;</span>, </span>
+<span id="cb29-4"><a href="validación-cruzada.html#cb29-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 4&quot;</span>, </span>
+<span id="cb29-5"><a href="validación-cruzada.html#cb29-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 5&quot;</span>, </span>
+<span id="cb29-6"><a href="validación-cruzada.html#cb29-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;medianImpute&quot;</span>, </span>
+<span id="cb29-7"><a href="validación-cruzada.html#cb29-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;bagImpute&quot;</span>, </span>
+<span id="cb29-8"><a href="validación-cruzada.html#cb29-8" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;missForest&quot;</span>),</span>
+<span id="cb29-9"><a href="validación-cruzada.html#cb29-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">RMSE =</span> <span class="fu">c</span>(<span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">1</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb29-10"><a href="validación-cruzada.html#cb29-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">2</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb29-11"><a href="validación-cruzada.html#cb29-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">3</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb29-12"><a href="validación-cruzada.html#cb29-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">4</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb29-13"><a href="validación-cruzada.html#cb29-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">5</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb29-14"><a href="validación-cruzada.html#cb29-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(med_imp, <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb29-15"><a href="validación-cruzada.html#cb29-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(bag_imp, <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb29-16"><a href="validación-cruzada.html#cb29-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(mf_imp<span class="sc">$</span>ximp), <span class="fu">make_df_numeric</span>(Carseats))))</span>
+<span id="cb29-17"><a href="validación-cruzada.html#cb29-17" aria-hidden="true" tabindex="-1"></a>                         </span>
+<span id="cb29-18"><a href="validación-cruzada.html#cb29-18" aria-hidden="true" tabindex="-1"></a>comparison <span class="sc">%&gt;%</span></span>
+<span id="cb29-19"><a href="validación-cruzada.html#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RMSE =</span> <span class="fu">round</span>(RMSE)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-20"><a href="validación-cruzada.html#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(RMSE)</span></code></pre></div>
+<pre><code>        Method RMSE
+1       mice 1   NA
+2       mice 2   NA
+3       mice 3   NA
+4       mice 4   NA
+5       mice 5   NA
+6 medianImpute   NA
+7    bagImpute   NA
+8   missForest   NA</code></pre>
+<p><code>missforest</code> obtiene los mejores resultados, aunque medianImpute compara muy bien. Los resultados de <code>mice</code> no son muy buenos, probablemente por las razones mencionadas anteriormente: está diseñado para una imputación múltiple, no simple.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>James et al. 2014<a href="validación-cruzada.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introducción-al-aprendizaje-automático.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regresión-logística.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/isglobal-brge/curso_machine_learning/tree/master/docs02-validacon_cruzada.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

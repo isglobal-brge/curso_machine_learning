@@ -1,0 +1,10 @@
+.Rproj.user
+.Rproj
+.Rhistory
+.RData
+_publish.R
+_book
+rsconnect
+
+*_cache
+header.tex
