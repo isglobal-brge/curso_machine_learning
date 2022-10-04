@@ -586,33 +586,3 @@ Con estas simples instrucciones obtendríamos esta aplicación Shiny (Figura aba
 
 
 ![Nomograma para el modelo de predicción para diabetes](figures/nomograma.png)
-
--------------------------------------------------------------------
-**EJERCICIO** (Entrega en Moodle: P-Práctica regresión logística):
-
-En esta página https://vincentarelbundock.github.io/Rdatasets/datasets.html tienes acceso a cientos de bases de datos que hay en R y que también puedes descargar como ficheros .csv. 
-
-Elige una base de datos donde la pregunta científica **requiera el análisis de una variable respuesta binaria**. Selecciona unas 8-15 variables independientes (intenta que hayan categóricas y continuas). **Crea un pdf** en el que muestres un análisis completo de los datos incluyendo:
-
-    1. Descripción de tu pregunta científica
-    
-    2. Análisis descriptivo de las variables independientes en función de tu variable respuesta
-    
-    3. Imputación de datos en caso de ser necesario
-    
-    4. Creación de un modelo predictivo
-    
-    5. Descripción de las ORs para el modelo final
-    
-    6. Validación del modelo mediante CV
-    
-    7. Descripción de la capacidad predictiva del modelo (Sensibilidad, Precisión, curva ROC, ...)
-    
-    8. Creación de un nomograma estático que incluya la ilustración del cálculo de riesgo para un individuo ficticio.
-    
-    9. Apéndice con el código R utilizado
-
-Se trata de crear un documento de unas 2-3 páginas (figuras y tablas aparte) explicando los principales resultados del estudio donde cada párrafo podría corresponder a cada una de las tareas anteriores. El documento debe incluir las tablas y/o figuras que creas conveniente que sostengan los resultados descritos en el documento. Se trata de intentar escribir el apartado de resultados de un artículo científico. Antes de escribir este apartado de resultados, el documento deberá empezar con un apartado breve de métodos describiendo los datos (brevemente - podéis usar la información que hay en la página de donde habéis descargado los datos) y los métodos estadísticos utilizados. Aquellos que quieran, lo pueden hacer con R Markdown. **NOTA**: El que no suba un pdf tendrá un 0 en la práctica.
--------------------------------------------------------------------
-
-
