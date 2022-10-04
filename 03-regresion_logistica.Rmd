@@ -537,7 +537,7 @@ mod.test.2 <- train(formula(mod), data=Pima.te,
 mod.test.2
 ```
 
-Vemos que en este caso el modelo obtenido mediante _stepwise_ tiene 
+Vemos que en este caso el modelo obtenido mediante _stepwise_ tiene una mejor capacidad predictiva en la muestra test, lo que demuestra que es un modelo más adecuado para hacer usar en la práctica.
 
 
 Notemos que la librería `caret` es muy flexible y nos permite mediante una única función `train`, estimar el modelo y evaluarlo mediante validación cruzada usando el argumento `trControl`. A lo largo del curso veremos que cambiando el argumento `method` podremos usar cualquier método de aprendizaje automático que existe. También veremos otros argumentos que nos permitirán llevar a cabo otros pasos necesarios a la hora de crear un modelo predictivo. 
