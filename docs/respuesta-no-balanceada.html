@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Respuesta no balanceada | Introducción al Aprendizaje automático en ciencias de la salud</title>
+  <meta name="description" content="7 Respuesta no balanceada | Introducción al Aprendizaje automático en ciencias de la salud" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Respuesta no balanceada | Introducción al Aprendizaje automático en ciencias de la salud" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Respuesta no balanceada | Introducción al Aprendizaje automático en ciencias de la salud" />
+  
+  
+  
+
+<meta name="author" content="Juan R González" />
+
+
+<meta name="date" content="2022-10-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="árboles-de-decisión.html"/>
+
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Aprendizaje Automático</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preámbulo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#instalación-de-librerías-necesarias-para-el-curso"><i class="fa fa-check"></i><b>1.1</b> Instalación de librerías necesarias para el curso</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducción-al-aprendizaje-automático.html"><a href="introducción-al-aprendizaje-automático.html"><i class="fa fa-check"></i><b>2</b> Introducción al Aprendizaje Automático</a></li>
+<li class="chapter" data-level="3" data-path="validación-cruzada.html"><a href="validación-cruzada.html"><i class="fa fa-check"></i><b>3</b> Validación cruzada</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="validación-cruzada.html"><a href="validación-cruzada.html#validación-en-un-conjunto-de-datos-externo"><i class="fa fa-check"></i><b>3.1</b> Validación en un conjunto de datos externo</a></li>
+<li class="chapter" data-level="3.2" data-path="validación-cruzada.html"><a href="validación-cruzada.html#leave-one-out-cross-validation-loocv"><i class="fa fa-check"></i><b>3.2</b> Leave-one-out cross validation (LOOCV)</a></li>
+<li class="chapter" data-level="3.3" data-path="validación-cruzada.html"><a href="validación-cruzada.html#k-fold-cross-validation-k-fold-cv"><i class="fa fa-check"></i><b>3.3</b> K-fold cross validation (K-fold CV)</a></li>
+<li class="chapter" data-level="3.4" data-path="validación-cruzada.html"><a href="validación-cruzada.html#uso-de-cv-para-estimar-el-hiper-parámetro"><i class="fa fa-check"></i><b>3.4</b> Uso de CV para estimar el hiper-parámetro</a></li>
+<li class="chapter" data-level="3.5" data-path="validación-cruzada.html"><a href="validación-cruzada.html#uso-de-bootstrap"><i class="fa fa-check"></i><b>3.5</b> Uso de bootstrap</a></li>
+<li class="chapter" data-level="3.6" data-path="validación-cruzada.html"><a href="validación-cruzada.html#imputación-de-datos-faltantes-información-extra-para-los-que-venís-al-curso"><i class="fa fa-check"></i><b>3.6</b> Imputación de datos faltantes (Información extra para los que venís al curso)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>4</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#la-función-logit-inversa"><i class="fa fa-check"></i><b>4.1</b> La función logit inversa</a></li>
+<li class="chapter" data-level="4.2" data-path="regresión-logística.html"><a href="regresión-logística.html#ejemplo-de-regresión-logística"><i class="fa fa-check"></i><b>4.2</b> Ejemplo de regresión logística</a></li>
+<li class="chapter" data-level="4.3" data-path="regresión-logística.html"><a href="regresión-logística.html#coeficientes-de-regresión-logística-como-probabilidades"><i class="fa fa-check"></i><b>4.3</b> Coeficientes de regresión logística como probabilidades</a></li>
+<li class="chapter" data-level="4.4" data-path="regresión-logística.html"><a href="regresión-logística.html#coeficientes-de-regresión-logística-como-razones-de-odds"><i class="fa fa-check"></i><b>4.4</b> Coeficientes de regresión logística como razones de odds</a></li>
+<li class="chapter" data-level="4.5" data-path="regresión-logística.html"><a href="regresión-logística.html#capacidad-predictiva-de-un-modelo-de-clasificación"><i class="fa fa-check"></i><b>4.5</b> Capacidad predictiva de un modelo de clasificación</a></li>
+<li class="chapter" data-level="4.6" data-path="regresión-logística.html"><a href="regresión-logística.html#ejemplo-de-regresión-logística-modelización-de-riesgo-diabetes"><i class="fa fa-check"></i><b>4.6</b> Ejemplo de regresión logística: modelización de riesgo diabetes</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="regresión-logística.html"><a href="regresión-logística.html#modelo-simple"><i class="fa fa-check"></i><b>4.6.1</b> Modelo simple</a></li>
+<li class="chapter" data-level="4.6.2" data-path="regresión-logística.html"><a href="regresión-logística.html#agregar-predictores-y-evaluar-el-ajuste"><i class="fa fa-check"></i><b>4.6.2</b> Agregar predictores y evaluar el ajuste</a></li>
+<li class="chapter" data-level="4.6.3" data-path="regresión-logística.html"><a href="regresión-logística.html#análisis-de-interacciones"><i class="fa fa-check"></i><b>4.6.3</b> Análisis de interacciones</a></li>
+<li class="chapter" data-level="4.6.4" data-path="regresión-logística.html"><a href="regresión-logística.html#gráfico-de-la-interacción"><i class="fa fa-check"></i><b>4.6.4</b> Gráfico de la interacción</a></li>
+<li class="chapter" data-level="4.6.5" data-path="regresión-logística.html"><a href="regresión-logística.html#uso-del-modelo-para-predecir-probabilidades"><i class="fa fa-check"></i><b>4.6.5</b> Uso del modelo para predecir probabilidades</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="regresión-logística.html"><a href="regresión-logística.html#creación-de-un-modelo-y-validación"><i class="fa fa-check"></i><b>4.7</b> Creación de un modelo y validación</a></li>
+<li class="chapter" data-level="4.8" data-path="regresión-logística.html"><a href="regresión-logística.html#nomogramas"><i class="fa fa-check"></i><b>4.8</b> Nomogramas</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="caret.html"><a href="caret.html"><i class="fa fa-check"></i><b>5</b> La librería <code>caret</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="caret.html"><a href="caret.html#pre-procesado"><i class="fa fa-check"></i><b>5.1</b> Pre-procesado</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="caret.html"><a href="caret.html#creación-de-variables"><i class="fa fa-check"></i><b>5.1.1</b> Creación de variables</a></li>
+<li class="chapter" data-level="5.1.2" data-path="caret.html"><a href="caret.html#predictores-con-poca-variabilidad"><i class="fa fa-check"></i><b>5.1.2</b> Predictores con poca variabilidad</a></li>
+<li class="chapter" data-level="5.1.3" data-path="caret.html"><a href="caret.html#identificación-de-predictores-correlacionados"><i class="fa fa-check"></i><b>5.1.3</b> Identificación de predictores correlacionados</a></li>
+<li class="chapter" data-level="5.1.4" data-path="caret.html"><a href="caret.html#centrado-y-escalado"><i class="fa fa-check"></i><b>5.1.4</b> Centrado y escalado</a></li>
+<li class="chapter" data-level="5.1.5" data-path="caret.html"><a href="caret.html#imputación"><i class="fa fa-check"></i><b>5.1.5</b> Imputación</a></li>
+<li class="chapter" data-level="5.1.6" data-path="caret.html"><a href="caret.html#pre-procesado-con-la-librería-recipes"><i class="fa fa-check"></i><b>5.1.6</b> Pre-procesado con la librería <code>recipes</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="caret.html"><a href="caret.html#visualización"><i class="fa fa-check"></i><b>5.2</b> Visualización</a></li>
+<li class="chapter" data-level="5.3" data-path="caret.html"><a href="caret.html#ejemplo-completo-creación-de-modelo-diagnóstico-para-cáncer-de-mama"><i class="fa fa-check"></i><b>5.3</b> Ejemplo completo: creación de modelo diagnóstico para cáncer de mama</a></li>
+<li class="chapter" data-level="5.4" data-path="caret.html"><a href="caret.html#creación-de-un-modelo-predictivo"><i class="fa fa-check"></i><b>5.4</b> Creación de un modelo predictivo</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html"><i class="fa fa-check"></i><b>6</b> Árboles de decisión</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#árboles-de-clasificación"><i class="fa fa-check"></i><b>6.1</b> Árboles de clasificación</a></li>
+<li class="chapter" data-level="6.2" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#área-bajo-la-curva-roc"><i class="fa fa-check"></i><b>6.2</b> Área bajo la curva ROC</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#entrenamiento-con-caret"><i class="fa fa-check"></i><b>6.2.1</b> Entrenamiento con <code>caret</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#árboles-de-regresión"><i class="fa fa-check"></i><b>6.3</b> Árboles de regresión</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#entrenamiento-con-caret-1"><i class="fa fa-check"></i><b>6.3.1</b> Entrenamiento con <code>caret</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#bagged-trees"><i class="fa fa-check"></i><b>6.4</b> Bagged trees</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#bagging-árboles-de-clasificación"><i class="fa fa-check"></i><b>6.4.1</b> Bagging árboles de clasificación</a></li>
+<li class="chapter" data-level="6.4.2" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#bagging-árboles-de-regresión"><i class="fa fa-check"></i><b>6.4.2</b> Bagging árboles de regresión</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#random-forest"><i class="fa fa-check"></i><b>6.5</b> Random Forest</a></li>
+<li class="chapter" data-level="6.6" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#random-forest-pn"><i class="fa fa-check"></i><b>6.6</b> Random Forest p&gt;&gt;n</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="respuesta-no-balanceada.html"><a href="respuesta-no-balanceada.html"><i class="fa fa-check"></i><b>7</b> Respuesta no balanceada</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción al Aprendizaje automático en ciencias de la salud</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="respuesta-no-balanceada" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Respuesta no balanceada</h1>
+<p>Cuando nos enfrentamos a problemas de clasificación en datos reales, puede ser un desafío tratar con un caso en el que una clase supera con creces a la otra (también conocidas como clases desequilibradas). En terminos prácticos podríamos, por ejemplo, predecir todos los inviduos como la categoría más frecuente y mejoraríamos la precisión que, como vimos en capítulos anteriores, por azar es del 50%.</p>
+<p>Estas son algunas de las técnicas más populares para tratar con el desequilibrio de clases, pero existen más. Proporcionamremos una descripción general rápida.</p>
+<ul>
+<li><p><em>Asignar pesos a cada clase</em>: imponemos un coste mayor cuando se cometen errores en la clase minoritaria</p></li>
+<li><p><em>Muestreo descendente (under-sampling)</em>: eliminar observaciones al azar en la clase mayoritaria</p></li>
+<li><p><em>Muestreo ascendente (oversampling)</em>: replicar aleatoriamente observaciones en la clase minoritaria</p></li>
+<li><p>Además del muestreo descendente y ascendente, existen métodos híbridos que combinan el muestreo descendente con la generación de datos adicionales. Dos de los más populares son <a href="https://journal.r-project.org/archive/2014/RJ-2014-008/RJ-2014-008.pdf">ROSE</a> y <a href="https://www.jair.org/index.php/jair/article/view/10302">SMOTE</a>. El primer método necesita tener instalada la librería <code>ROSE</code> y el segundo la librería <code>DMwR</code>.</p></li>
+</ul>
+<div class="figure">
+<img src="figures/ImbalancedClasses.jpg" alt="" />
+<p class="caption">Clases desbalanceadas</p>
+</div>
+<p>Si queréis podéis encontrar una descripción más detallada en esta publicación de blog de <a href="https://www.svds.com/learning-imbalanced-classes/">Silicon Valley Data Science</a>.</p>
+<p>Estos métodos también funcionan para los problemas multi-clase. En <a href="https://link.springer.com/article/10.1007/s13748-016-0094-0">este artículo</a> tenéis más información general sobre el tema.</p>
+<p>Debemos tener en cuenta que, en realidad, no deberíamos simplemente realizar un muestreo descendente o ascendente en nuestros datos de entrenamiento y luego ejecutar el modelo. Debemos tener en cuenta la validación cruzada y realizar un muestreo descendente o ascendente en cada sub-muestra de forma independiente para obtener una estimación real del rendimiento del modelo.</p>
+<p>También es importante señalar que estas técnicas de ponderación y muestreo tienen mayor impacto en métricas de evaluación del modelo como la precisión, porque mueven artificialmente el umbral para estar más cerca de lo que podría considerarse como la ubicación “óptima” en una curva ROC. Otras métricas como el AUC o la tasa de falsos o verdaderos positivos no se ven tan afectadas.</p>
+<p>Ilustremos cómo llevar a cabo estas técnicas con nuestro ejemplo de cáncer de mama. Usaremos los datos que ya están preprocesados según se hizo en la Sección <a href="caret.html#caret">5</a> y que se encuentran en los objetos <code>breast_train_prep</code> y <code>breast_test_prep</code>. Efectivamente, los datos para este problema están desbalanceados respecto a la variable que queremos predecir</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="respuesta-no-balanceada.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(breast_test_prep<span class="sc">$</span>diagnosis)</span></code></pre></div>
+<pre><code>
+  B   M 
+107  63 </code></pre>
+<p>Afortunadamente, la librería <code>caret</code> hace que sea muy fácil incorporar técnicas de muestreo descendente y ascendente incluyendo validación cruzada. Simplemente basta con utilizar el argumento <code>sampling</code> en nuestro <code>trainControl()</code> y escoger el método “down” o “up” según nos convenga. El resto del proceso de creación de modelo permanece igual que los pasos llevados con cualquier otro método que hemos visto, por ejemlo KNN.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="respuesta-no-balanceada.html#cb276-1" aria-hidden="true" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, </span>
+<span id="cb276-2"><a href="respuesta-no-balanceada.html#cb276-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">number =</span> <span class="dv">10</span>, </span>
+<span id="cb276-3"><a href="respuesta-no-balanceada.html#cb276-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">repeats =</span> <span class="dv">5</span>, </span>
+<span id="cb276-4"><a href="respuesta-no-balanceada.html#cb276-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">verboseIter =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb276-5"><a href="respuesta-no-balanceada.html#cb276-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sampling =</span> <span class="st">&quot;down&quot;</span>)</span>
+<span id="cb276-6"><a href="respuesta-no-balanceada.html#cb276-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb276-7"><a href="respuesta-no-balanceada.html#cb276-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb276-8"><a href="respuesta-no-balanceada.html#cb276-8" aria-hidden="true" tabindex="-1"></a>model_knn_under <span class="ot">&lt;-</span> caret<span class="sc">::</span><span class="fu">train</span>(diagnosis <span class="sc">~</span> .,</span>
+<span id="cb276-9"><a href="respuesta-no-balanceada.html#cb276-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> breast_train_prep,</span>
+<span id="cb276-10"><a href="respuesta-no-balanceada.html#cb276-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>,</span>
+<span id="cb276-11"><a href="respuesta-no-balanceada.html#cb276-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">trControl =</span> ctrl)</span>
+<span id="cb276-12"><a href="respuesta-no-balanceada.html#cb276-12" aria-hidden="true" tabindex="-1"></a>model_knn_under</span></code></pre></div>
+<pre><code>k-Nearest Neighbors 
+
+399 samples
+ 19 predictor
+  2 classes: &#39;B&#39;, &#39;M&#39; 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold, repeated 5 times) 
+Summary of sample sizes: 359, 359, 359, 359, 359, 359, ... 
+Addtional sampling using down-sampling
+
+Resampling results across tuning parameters:
+
+  k  Accuracy   Kappa    
+  5  0.9443462  0.8815450
+  7  0.9483718  0.8893875
+  9  0.9493718  0.8920609
+
+Accuracy was used to select the optimal model using the largest value.
+The final value used for the model was k = 9.</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="respuesta-no-balanceada.html#cb278-1" aria-hidden="true" tabindex="-1"></a>cm_under <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(breast_test_prep<span class="sc">$</span>diagnosis,</span>
+<span id="cb278-2"><a href="respuesta-no-balanceada.html#cb278-2" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">predict</span>(model_knn_under, </span>
+<span id="cb278-3"><a href="respuesta-no-balanceada.html#cb278-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">newdata =</span> breast_test_prep))</span>
+<span id="cb278-4"><a href="respuesta-no-balanceada.html#cb278-4" aria-hidden="true" tabindex="-1"></a>cm_under</span></code></pre></div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   B   M
+         B 102   5
+         M   6  57
+                                          
+               Accuracy : 0.9353          
+                 95% CI : (0.8872, 0.9673)
+    No Information Rate : 0.6353          
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.8608          
+                                          
+ Mcnemar&#39;s Test P-Value : 1               
+                                          
+            Sensitivity : 0.9444          
+            Specificity : 0.9194          
+         Pos Pred Value : 0.9533          
+         Neg Pred Value : 0.9048          
+             Prevalence : 0.6353          
+         Detection Rate : 0.6000          
+   Detection Prevalence : 0.6294          
+      Balanced Accuracy : 0.9319          
+                                          
+       &#39;Positive&#39; Class : B               
+                                          </code></pre>
+<p>Podemos comparar esta capacidad predictiva con la que tiene el modelo obiviando el problema del desbalanceo y que se estimaría así:</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="respuesta-no-balanceada.html#cb280-1" aria-hidden="true" tabindex="-1"></a>crtl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,</span>
+<span id="cb280-2"><a href="respuesta-no-balanceada.html#cb280-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">number =</span> <span class="dv">10</span>,  </span>
+<span id="cb280-3"><a href="respuesta-no-balanceada.html#cb280-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">repeats =</span> <span class="dv">10</span>,</span>
+<span id="cb280-4"><a href="respuesta-no-balanceada.html#cb280-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">verboseIter =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb280-5"><a href="respuesta-no-balanceada.html#cb280-5" aria-hidden="true" tabindex="-1"></a>model_knn <span class="ot">&lt;-</span> caret<span class="sc">::</span><span class="fu">train</span>(diagnosis <span class="sc">~</span> .,</span>
+<span id="cb280-6"><a href="respuesta-no-balanceada.html#cb280-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> breast_train_prep,</span>
+<span id="cb280-7"><a href="respuesta-no-balanceada.html#cb280-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>,</span>
+<span id="cb280-8"><a href="respuesta-no-balanceada.html#cb280-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">trControl =</span> ctrl)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="respuesta-no-balanceada.html#cb281-1" aria-hidden="true" tabindex="-1"></a>cm_original <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(breast_test_prep<span class="sc">$</span>diagnosis,</span>
+<span id="cb281-2"><a href="respuesta-no-balanceada.html#cb281-2" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">predict</span>(model_knn, </span>
+<span id="cb281-3"><a href="respuesta-no-balanceada.html#cb281-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">newdata =</span> breast_test_prep))</span>
+<span id="cb281-4"><a href="respuesta-no-balanceada.html#cb281-4" aria-hidden="true" tabindex="-1"></a>cm_original</span></code></pre></div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   B   M
+         B 101   6
+         M   5  58
+                                          
+               Accuracy : 0.9353          
+                 95% CI : (0.8872, 0.9673)
+    No Information Rate : 0.6235          
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.8617          
+                                          
+ Mcnemar&#39;s Test P-Value : 1               
+                                          
+            Sensitivity : 0.9528          
+            Specificity : 0.9062          
+         Pos Pred Value : 0.9439          
+         Neg Pred Value : 0.9206          
+             Prevalence : 0.6235          
+         Detection Rate : 0.5941          
+   Detection Prevalence : 0.6294          
+      Balanced Accuracy : 0.9295          
+                                          
+       &#39;Positive&#39; Class : B               
+                                          </code></pre>
+<p>Estimemos ahora el modelo con un muestreo ascendente y usando, por ejemplo SMOTE (ROSE sea haría igual usando <code>sampling="rose"</code>)</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="respuesta-no-balanceada.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb283-2"><a href="respuesta-no-balanceada.html#cb283-2" aria-hidden="true" tabindex="-1"></a><span class="co"># OVER</span></span>
+<span id="cb283-3"><a href="respuesta-no-balanceada.html#cb283-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb283-4"><a href="respuesta-no-balanceada.html#cb283-4" aria-hidden="true" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, </span>
+<span id="cb283-5"><a href="respuesta-no-balanceada.html#cb283-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">number =</span> <span class="dv">10</span>, </span>
+<span id="cb283-6"><a href="respuesta-no-balanceada.html#cb283-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">repeats =</span> <span class="dv">5</span>, </span>
+<span id="cb283-7"><a href="respuesta-no-balanceada.html#cb283-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">verboseIter =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb283-8"><a href="respuesta-no-balanceada.html#cb283-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sampling =</span> <span class="st">&quot;up&quot;</span>)</span>
+<span id="cb283-9"><a href="respuesta-no-balanceada.html#cb283-9" aria-hidden="true" tabindex="-1"></a>model_knn_over <span class="ot">&lt;-</span> caret<span class="sc">::</span><span class="fu">train</span>(diagnosis <span class="sc">~</span> .,</span>
+<span id="cb283-10"><a href="respuesta-no-balanceada.html#cb283-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> breast_train_prep,</span>
+<span id="cb283-11"><a href="respuesta-no-balanceada.html#cb283-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>,</span>
+<span id="cb283-12"><a href="respuesta-no-balanceada.html#cb283-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">trControl =</span> ctrl)</span>
+<span id="cb283-13"><a href="respuesta-no-balanceada.html#cb283-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-14"><a href="respuesta-no-balanceada.html#cb283-14" aria-hidden="true" tabindex="-1"></a>cm_over <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(breast_test_prep<span class="sc">$</span>diagnosis,</span>
+<span id="cb283-15"><a href="respuesta-no-balanceada.html#cb283-15" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">predict</span>(model_knn_over, </span>
+<span id="cb283-16"><a href="respuesta-no-balanceada.html#cb283-16" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">newdata =</span> breast_test_prep))</span>
+<span id="cb283-17"><a href="respuesta-no-balanceada.html#cb283-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-18"><a href="respuesta-no-balanceada.html#cb283-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-19"><a href="respuesta-no-balanceada.html#cb283-19" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb283-20"><a href="respuesta-no-balanceada.html#cb283-20" aria-hidden="true" tabindex="-1"></a><span class="co"># SMOTE</span></span>
+<span id="cb283-21"><a href="respuesta-no-balanceada.html#cb283-21" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb283-22"><a href="respuesta-no-balanceada.html#cb283-22" aria-hidden="true" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, </span>
+<span id="cb283-23"><a href="respuesta-no-balanceada.html#cb283-23" aria-hidden="true" tabindex="-1"></a>                     <span class="at">number =</span> <span class="dv">10</span>, </span>
+<span id="cb283-24"><a href="respuesta-no-balanceada.html#cb283-24" aria-hidden="true" tabindex="-1"></a>                     <span class="at">repeats =</span> <span class="dv">5</span>, </span>
+<span id="cb283-25"><a href="respuesta-no-balanceada.html#cb283-25" aria-hidden="true" tabindex="-1"></a>                     <span class="at">verboseIter =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb283-26"><a href="respuesta-no-balanceada.html#cb283-26" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sampling =</span> <span class="st">&quot;smote&quot;</span>)</span>
+<span id="cb283-27"><a href="respuesta-no-balanceada.html#cb283-27" aria-hidden="true" tabindex="-1"></a>model_knn_smote <span class="ot">&lt;-</span> caret<span class="sc">::</span><span class="fu">train</span>(diagnosis <span class="sc">~</span> .,</span>
+<span id="cb283-28"><a href="respuesta-no-balanceada.html#cb283-28" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> breast_train_prep,</span>
+<span id="cb283-29"><a href="respuesta-no-balanceada.html#cb283-29" aria-hidden="true" tabindex="-1"></a>                         <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>,</span>
+<span id="cb283-30"><a href="respuesta-no-balanceada.html#cb283-30" aria-hidden="true" tabindex="-1"></a>                         <span class="at">trControl =</span> ctrl)</span>
+<span id="cb283-31"><a href="respuesta-no-balanceada.html#cb283-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-32"><a href="respuesta-no-balanceada.html#cb283-32" aria-hidden="true" tabindex="-1"></a>cm_smote <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(breast_test_prep<span class="sc">$</span>diagnosis,</span>
+<span id="cb283-33"><a href="respuesta-no-balanceada.html#cb283-33" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">predict</span>(model_knn_smote, </span>
+<span id="cb283-34"><a href="respuesta-no-balanceada.html#cb283-34" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">newdata =</span> breast_test_prep))</span></code></pre></div>
+<p>Y podemos comparar las predicciones con la función <code>resamples</code> (para introducir variabilidad)</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="respuesta-no-balanceada.html#cb284-1" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">original =</span> model_knn,</span>
+<span id="cb284-2"><a href="respuesta-no-balanceada.html#cb284-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">under =</span> model_knn_under,</span>
+<span id="cb284-3"><a href="respuesta-no-balanceada.html#cb284-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">over =</span> model_knn_over,</span>
+<span id="cb284-4"><a href="respuesta-no-balanceada.html#cb284-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">smote =</span> model_knn_smote)</span>
+<span id="cb284-5"><a href="respuesta-no-balanceada.html#cb284-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb284-6"><a href="respuesta-no-balanceada.html#cb284-6" aria-hidden="true" tabindex="-1"></a>resampling <span class="ot">&lt;-</span> <span class="fu">resamples</span>(models)</span>
+<span id="cb284-7"><a href="respuesta-no-balanceada.html#cb284-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(resampling)</span></code></pre></div>
+<p><img src="fig_out/unnamed-chunk-174-1.png" width="672" /></p>
+<p>O compararlas con otras métricas</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="respuesta-no-balanceada.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb285-2"><a href="respuesta-no-balanceada.html#cb285-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-3"><a href="respuesta-no-balanceada.html#cb285-3" aria-hidden="true" tabindex="-1"></a>select_measures <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sensitivity&quot;</span>, <span class="st">&quot;Specificity&quot;</span>, <span class="st">&quot;Precision&quot;</span>,</span>
+<span id="cb285-4"><a href="respuesta-no-balanceada.html#cb285-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;Recall&quot;</span>, <span class="st">&quot;F1&quot;</span>)</span>
+<span id="cb285-5"><a href="respuesta-no-balanceada.html#cb285-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-6"><a href="respuesta-no-balanceada.html#cb285-6" aria-hidden="true" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb285-7"><a href="respuesta-no-balanceada.html#cb285-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (name <span class="cf">in</span> <span class="fu">names</span>(models)) {</span>
+<span id="cb285-8"><a href="respuesta-no-balanceada.html#cb285-8" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> <span class="fu">get</span>(<span class="fu">paste0</span>(<span class="st">&quot;cm_&quot;</span>, name))</span>
+<span id="cb285-9"><a href="respuesta-no-balanceada.html#cb285-9" aria-hidden="true" tabindex="-1"></a>  comparison.i <span class="ot">&lt;-</span> model<span class="sc">$</span>byClass[select_measures]</span>
+<span id="cb285-10"><a href="respuesta-no-balanceada.html#cb285-10" aria-hidden="true" tabindex="-1"></a>  comparison <span class="ot">&lt;-</span> <span class="fu">rbind</span>(comparison, comparison.i) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb285-11"><a href="respuesta-no-balanceada.html#cb285-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb285-12"><a href="respuesta-no-balanceada.html#cb285-12" aria-hidden="true" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> comparison <span class="sc">%&gt;%</span> </span>
+<span id="cb285-13"><a href="respuesta-no-balanceada.html#cb285-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_column</span>(<span class="at">model=</span><span class="fu">names</span>(models), <span class="at">.before=</span><span class="cn">TRUE</span>)</span>
+<span id="cb285-14"><a href="respuesta-no-balanceada.html#cb285-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-15"><a href="respuesta-no-balanceada.html#cb285-15" aria-hidden="true" tabindex="-1"></a>comparison</span></code></pre></div>
+<pre><code># A tibble: 4 x 6
+  model    Sensitivity Specificity Precision Recall    F1
+  &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 original       0.953       0.906     0.944  0.953 0.948
+2 under          0.944       0.919     0.953  0.944 0.949
+3 over           0.935       0.903     0.944  0.935 0.940
+4 smote          0.935       0.903     0.944  0.935 0.940</code></pre>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="respuesta-no-balanceada.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb287-2"><a href="respuesta-no-balanceada.html#cb287-2" aria-hidden="true" tabindex="-1"></a>comparison <span class="sc">%&gt;%</span></span>
+<span id="cb287-3"><a href="respuesta-no-balanceada.html#cb287-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(x, y, Sensitivity<span class="sc">:</span>F1) <span class="sc">%&gt;%</span></span>
+<span id="cb287-4"><a href="respuesta-no-balanceada.html#cb287-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> model)) <span class="sc">+</span></span>
+<span id="cb287-5"><a href="respuesta-no-balanceada.html#cb287-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="fig_out/unnamed-chunk-175-1.png" width="672" /></p>
+
+</div>
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="árboles-de-decisión.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/isglobal-brge/curso_machine_learning/tree/master/docs06-nobalanceados.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
