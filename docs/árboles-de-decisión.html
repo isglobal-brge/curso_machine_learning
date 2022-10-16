@@ -1737,32 +1737,6 @@ Resampling results:
 </tr>
 </tbody>
 </table>
-<table style="width:94%;">
-<colgroup>
-<col width="94%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td align="left"><strong>EJERCICIO</strong> (Entrega en Moodle: P2-Bagged):</td>
-</tr>
-<tr class="even">
-<td align="left">Implementa una función que implemente el método “bagged tree”. Aplícalo a los datos “Carseats” y compara tus resultados con los que se obtienen usando caret.</td>
-</tr>
-</tbody>
-</table>
-<table style="width:94%;">
-<colgroup>
-<col width="94%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td align="left"><strong>EJERCICIO</strong> (Entrega en Moodle: P-Bagged Breast cancer):</td>
-</tr>
-<tr class="even">
-<td align="left">Utiliza los datos de cáncer de mama que hemos trabajado en clase “breast_train_prep” y “breast_test_prep” (que puedes encontrar en el fichero “breast.Rdata” del Moodle) para crear un modelo predictivo usando CART y Bagged Trees. Compara los resultados con los obtenidos mediant KNN y LDA reportados en el bookdown del curso.</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div id="random-forest" class="section level2" number="6.5">
@@ -1832,19 +1806,6 @@ The final value used for the model was mtry = 7.</code></pre>
 <span id="cb269-12"><a href="árboles-de-decisión.html#cb269-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb269-13"><a href="árboles-de-decisión.html#cb269-13" aria-hidden="true" tabindex="-1"></a>oj_mdl_rf <span class="sc">%&gt;%</span> <span class="fu">plot_rf</span>()</span></code></pre></div>
 <p><img src="fig_out/unnamed-chunk-164-1.png" width="672" /></p>
-<table style="width:94%;">
-<colgroup>
-<col width="94%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td align="left"><strong>EJERCICIO</strong> (Entrega en Moodle: P2-Plot RF):</td>
-</tr>
-<tr class="even">
-<td align="left">Si en el modelo <code>train</code> usamos <code>metric = "prSummary"</code> también podemos visualizar otras métricas para evaluar el comportamiento del modelo. En particular el AUC que puede ser interesante desde un punto de vista práctico. Crea una función que visualice dichas métricas y aplícalo a los datos <code>oj_train</code> (que obviamente tendrás que re-entrenar con esa nueva métrica).</td>
-</tr>
-</tbody>
-</table>
 <p>Podemos usar este modelo para hacer predicciones sobre la muestra test</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="árboles-de-decisión.html#cb270-1" aria-hidden="true" tabindex="-1"></a>pred_rf <span class="ot">&lt;-</span> <span class="fu">predict</span>(oj_mdl_rf, <span class="at">newdata =</span> oj_test, <span class="at">type =</span> <span class="st">&quot;raw&quot;</span>)</span>
 <span id="cb270-2"><a href="árboles-de-decisión.html#cb270-2" aria-hidden="true" tabindex="-1"></a>oj_cm_rf <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(pred_rf, oj_test<span class="sc">$</span>Purchase)</span>
@@ -1928,19 +1889,6 @@ Prediction  CH  MM
 <blockquote>
 <p>Random forest classification is a popular machine learning method for developing prediction models in many research settings. Often in prediction modeling, a goal is to reduce the number of variables needed to obtain a prediction in order to reduce the burden of data collection and improve efficiency. Several variable selection methods exist for the setting of random forest classification; however, there is a paucity of literature to guide users as to which method may be preferable for different types of datasets. Using 311 classification datasets freely available online, we evaluate the prediction error rates, number of variables, computation times and area under the receiver operating curve for many random forest variable selection methods. We compare random forest variable selection methods for different types of datasets (datasets with binary outcomes, datasets with many predictors, and datasets with imbalanced outcomes) and for different types of methods (standard random forest versus conditional random forest methods and test based versus performance based methods). Based on our study, the best variable selection methods for most datasets are Jiang’s method and the method implemented in the VSURF R package. For datasets with many predictors, the methods implemented in the R packages varSelRF and Boruta are preferable due to computational efficiency. A significant contribution of this study is the ability to assess different variable selection techniques in the setting of random forest classification in order to identify preferable methods based on applications in expert and intelligent systems.</p>
 </blockquote>
-<table style="width:94%;">
-<colgroup>
-<col width="94%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td align="left"><strong>EJERCICIO</strong> (Entrega en Moodle: P-RF Breast cancer):</td>
-</tr>
-<tr class="even">
-<td align="left">Utiliza los datos de cáncer de mama que hemos trabajado en clase “breast_train_prep” y “breast_test_prep” (que puedes encontrar en el fichero “breast.Rdata” del Moodle) para crear un modelo predictivo usando Random Forest. Compara los resultados con los obtenidos mediante KNN y LDA reportados en el bookdown del curso (y di si mejora los que obtuviste con CART y Bagged Trees).</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div id="random-forest-pn" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Random Forest p&gt;&gt;n</h2>

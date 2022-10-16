@@ -713,20 +713,6 @@ knitr::kable(cs_scoreboard, row.names = FALSE)
 ```
 
 
-
--------------------------------------------------------------------
-**EJERCICIO** (Entrega en Moodle: P2-Bagged):
-
-Implementa una función que implemente el método "bagged tree". Aplícalo a los datos "Carseats" y compara tus resultados con los que se obtienen usando caret.
--------------------------------------------------------------------
-
-
--------------------------------------------------------------------
-**EJERCICIO** (Entrega en Moodle: P-Bagged Breast cancer):
-
-Utiliza los datos de cáncer de mama que hemos trabajado en clase "breast_train_prep" y "breast_test_prep" (que puedes encontrar en el fichero "breast.Rdata" del Moodle) para crear un modelo predictivo usando CART y Bagged Trees. Compara los resultados con los obtenidos mediant KNN y LDA reportados en el bookdown del curso.
--------------------------------------------------------------------
-
 ## Random Forest
 
 Los *Random Forest* (bosques aleatorios) también son un conjunto de árboles de decisión (*ensambladores*) que mejoran los *bagged trees* mediante la creación de un bosque no correlacionados de árboles que, de nuevo, mejora la capacidad predictiva de un único árbol. Al igual que en el *bagged* (*embolsado*), el algoritmo construye varios árboles de decisión sobre muestras de entrenamiento bootstrap. Sin embargo, al construir estos árboles de decisión, cada vez que se considera una división en un árbol, se elige una muestra aleatoria de predictores (hiperparámetro *m* o *mtry*) como candidatos de división del conjunto completo de predictores $p$. En cada división se toma una nueva muestra de predictores. Típicamente $m \approx \sqrt{p}$. En consecuencia, los árboles *bagged* son un caso especial de los *random forest* cuando $m = p$. 
@@ -787,12 +773,6 @@ oj_mdl_rf %>% plot_rf()
 ```
 
 
--------------------------------------------------------------------
-**EJERCICIO** (Entrega en Moodle: P2-Plot RF):
-
-Si en el modelo `train` usamos `metric = "prSummary"` también podemos visualizar otras métricas para evaluar el comportamiento del modelo. En particular el AUC que puede ser interesante desde un punto de vista práctico. Crea una función que visualice dichas métricas y aplícalo a los datos `oj_train` (que obviamente tendrás que re-entrenar con esa nueva métrica).
--------------------------------------------------------------------
-
 
 Podemos usar este modelo para hacer predicciones sobre la muestra test
 
@@ -835,14 +815,6 @@ Recordemos que la importancia de las variables se puede ver con la función `var
 Speiser JL et al. (2012). **A Comparison of Random Forest Variable Selection Methods for Classification Prediction Modeling**
 
 > Random forest classification is a popular machine learning method for developing prediction models in many research settings. Often in prediction modeling, a goal is to reduce the number of variables needed to obtain a prediction in order to reduce the burden of data collection and improve efficiency. Several variable selection methods exist for the setting of random forest classification; however, there is a paucity of literature to guide users as to which method may be preferable for different types of datasets. Using 311 classification datasets freely available online, we evaluate the prediction error rates, number of variables, computation times and area under the receiver operating curve for many random forest variable selection methods. We compare random forest variable selection methods for different types of datasets (datasets with binary outcomes, datasets with many predictors, and datasets with imbalanced outcomes) and for different types of methods (standard random forest versus conditional random forest methods and test based versus performance based methods). Based on our study, the best variable selection methods for most datasets are Jiang’s method and the method implemented in the VSURF R package. For datasets with many predictors, the methods implemented in the R packages varSelRF and Boruta are preferable due to computational efficiency. A significant contribution of this study is the ability to assess different variable selection techniques in the setting of random forest classification in order to identify preferable methods based on applications in expert and intelligent systems.
-
-
-
--------------------------------------------------------------------
-**EJERCICIO** (Entrega en Moodle: P-RF Breast cancer):
-
-Utiliza los datos de cáncer de mama que hemos trabajado en clase "breast_train_prep" y "breast_test_prep" (que puedes encontrar en el fichero "breast.Rdata" del Moodle) para crear un modelo predictivo usando Random Forest. Compara los resultados con los obtenidos mediante KNN y LDA reportados en el bookdown del curso (y di si mejora los que obtuviste con CART y Bagged Trees).
--------------------------------------------------------------------
 
 
 ## Random Forest p>>n

@@ -651,20 +651,3 @@ fit
 
 
 
--------------------------------------------------------------------
-**EJERCICIO** (Entrega en Moodle: P-Preproceso cáncer de cervix): Vamos analizar los datos pertenecientes a un estudio multicéntrico internacional caso-control de cáncer de cuello uterino realizado en 7 países: Brasil, Marruecos, Filipinas, Tailandia, Perú, España y Colombia. La base de datos contiene información sobre variables identificativas (`status` es la variable respuesta 0:Control - 1:Caso), demográficas, de riesgo incluyendo la presencia de infección por Virus del Papiloma Humano de 1489 casos de cáncer de cuello uterino y 1421 controles apareados por grupos de edad. 
-
-> Las variables pueden contener valores en blanco que corresponden a información perdida o que no procede.
-
-La información de las variables se puede ver en el siguiente archivo html que se puede visualizar en su totalidad con la barra que hay en la derecha:
-
-
-![Multicentric study](data/multicentric.htm){width=105%}
-
-
-
-
-
-
-- Realiza todos los pasos de preprocesado necesarios para crear una base de datos de entrenamiento (70%) y otra de test (30%) que usaremos para otros ejercicios futuros correspondientes a los diferentes métodos de aprendizaje automático que veremos en este curso. Recordemos que la variable resultado es una variable binaria (status: 0-Control/1-Caso).
--------------------------------------------------------------------
