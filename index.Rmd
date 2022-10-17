@@ -36,10 +36,9 @@ Este bookdown sirve como notas para el curso [Introducción al Aprendizaje autom
 
    1. Introducción al aprendizaje automático 
    2. Métodos de validación cruzada
-   3. Regresión Logística
-   4. Nomogramas
-   5. Árboles de decisión: clasificación y regresión (CART), Bagged y Random Forest
-   6. Métodos para tratar datos desbalanceados
+   3. Regresión Logística y nomogramas
+   4  Árboles de decisión: clasificación y regresión (CART), Bagged y Random Forest
+   5. Métodos para tratar datos desbalanceados
 
 
 
