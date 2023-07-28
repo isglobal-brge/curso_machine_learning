@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Introducción al Aprendizaje automático en ciencias de la salud</title>
   <meta name="description" content="Introducción al Aprendizaje automático en ciencias de la salud" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Introducción al Aprendizaje automático en ciencias de la salud" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Juan R González" />
 
 
-<meta name="date" content="2022-10-16" />
+<meta name="date" content="2023-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 
 <link rel="next" href="introducción-al-aprendizaje-automático.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -93,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -106,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -203,7 +202,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#random-forest"><i class="fa fa-check"></i><b>6.5</b> Random Forest</a></li>
 <li class="chapter" data-level="6.6" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#random-forest-pn"><i class="fa fa-check"></i><b>6.6</b> Random Forest p&gt;&gt;n</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="respuesta-no-balanceada.html"><a href="respuesta-no-balanceada.html"><i class="fa fa-check"></i><b>7</b> Respuesta no balanceada</a></li>
+<li class="chapter" data-level="7" data-path="boosting.html"><a href="boosting.html"><i class="fa fa-check"></i><b>7</b> Boosting</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="boosting.html"><a href="boosting.html#cómo-funciona-el-boosting"><i class="fa fa-check"></i><b>7.1</b> Cómo funciona el <em>boosting</em></a></li>
+<li class="chapter" data-level="7.2" data-path="boosting.html"><a href="boosting.html#adaboost"><i class="fa fa-check"></i><b>7.2</b> AdaBoost</a></li>
+<li class="chapter" data-level="7.3" data-path="boosting.html"><a href="boosting.html#gbm-básico"><i class="fa fa-check"></i><b>7.3</b> GBM básico</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="boosting.html"><a href="boosting.html#boostingHiperparam"><i class="fa fa-check"></i><b>7.3.1</b> Hiperparámetros</a></li>
+<li class="chapter" data-level="7.3.2" data-path="boosting.html"><a href="boosting.html#implementación"><i class="fa fa-check"></i><b>7.3.2</b> Implementación</a></li>
+<li class="chapter" data-level="7.3.3" data-path="boosting.html"><a href="boosting.html#estrategia-general-de-tuning"><i class="fa fa-check"></i><b>7.3.3</b> Estrategia general de <em>tuning</em></a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="boosting.html"><a href="boosting.html#gbms-estocásticos"><i class="fa fa-check"></i><b>7.4</b> GBMs estocásticos</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="boosting.html"><a href="boosting.html#hiperparámetros-estocásticos"><i class="fa fa-check"></i><b>7.4.1</b> Hiperparámetros estocásticos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="boosting.html"><a href="boosting.html#xgboost"><i class="fa fa-check"></i><b>7.5</b> XGBoost</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="boosting.html"><a href="boosting.html#reguralización"><i class="fa fa-check"></i><b>7.5.1</b> Reguralización</a></li>
+<li class="chapter" data-level="7.5.2" data-path="boosting.html"><a href="boosting.html#estrategia-de-tuning"><i class="fa fa-check"></i><b>7.5.2</b> Estrategia de <em>tuning</em></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="boosting.html"><a href="boosting.html#otros-algoritmos-gbm"><i class="fa fa-check"></i><b>7.6</b> Otros algoritmos GBM</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="respuesta-no-balanceada.html"><a href="respuesta-no-balanceada.html"><i class="fa fa-check"></i><b>8</b> Respuesta no balanceada</a></li>
+<li class="chapter" data-level="9" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html"><i class="fa fa-check"></i><b>9</b> Modelos de regularización</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#introducción"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#cómo-regularizar"><i class="fa fa-check"></i><b>9.2</b> Cómo regularizar</a></li>
+<li class="chapter" data-level="9.3" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#implementación-en-r"><i class="fa fa-check"></i><b>9.3</b> Implementación en R</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#ejemplo-ridge-regression"><i class="fa fa-check"></i><b>9.3.1</b> Ejemplo: Ridge Regression</a></li>
+<li class="chapter" data-level="9.3.2" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#ejemplo-lasso"><i class="fa fa-check"></i><b>9.3.2</b> Ejemplo: Lasso</a></li>
+<li class="chapter" data-level="9.3.3" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#ejemplo-elastic-net"><i class="fa fa-check"></i><b>9.3.3</b> Ejemplo: Elastic Net</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -227,10 +258,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Introducción al Aprendizaje automático en ciencias de la salud</h1>
 <p class="author"><em>Juan R González</em></p>
-<p class="date"><em>2022-10-16</em></p>
+<p class="date"><em>2023-07-28</em></p>
 </div>
-<div id="preámbulo" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Preámbulo</h1>
+<div id="preámbulo" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Preámbulo<a href="index.html#preámbulo" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Este bookdown sirve como notas para el curso <a href="https://www.iisaragon.es/event/curso-modelizacion-estadistica-avanzada-con-r-analisis-de-datos-longitudinales-iacs/">Introducción al Aprendizaje automático en ciencias de la salud</a> impartido en el <a href="https://www.iacs.es/">Insituto Aragonés de Ciencias de la Salud</a></p>
 <p><strong>Objetivo general</strong>: Este es un curso totalmente introductorio que permitirá al alumno profundizar en las principales técnicas de aprendizaje automático aplicadas a ciencias de la salud</p>
 <p><strong>Objetivos específicos</strong>:</p>
@@ -243,17 +274,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Introducción al aprendizaje automático</li>
 <li>Métodos de validación cruzada</li>
-<li>Regresión Logística y nomogramas
-4 Árboles de decisión: clasificación y regresión (CART), Bagged y Random Forest</li>
+<li>Árboles de decisión: clasificación y regresión (CART)</li>
+<li>Métodos Boosting y Bagging</li>
+<li>Método XGboost</li>
 <li>Métodos para tratar datos desbalanceados</li>
+<li>Modelos de reguralización</li>
 </ol>
-<div id="instalación-de-librerías-necesarias-para-el-curso" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Instalación de librerías necesarias para el curso</h2>
+<div id="instalación-de-librerías-necesarias-para-el-curso" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Instalación de librerías necesarias para el curso<a href="index.html#instalación-de-librerías-necesarias-para-el-curso" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Para poder reproducir todo el código de este libro se necesitan tener instaladas las siguientes librería</p>
-<pre><code>install.packages(c(&quot;caret&quot;))
-</code></pre>
+<pre><code>install.packages(c(&quot;caret&quot;, &quot;tidyverse&quot;, &quot;recipies&quot;, &quot;glmnet&quot;))</code></pre>
 <p>Los datos están accesibles en esta carpeta</p>
-<pre><code>https://github.com/isglobal-brge/curso_machine_learning/tree/main/datos</code></pre>
+<pre><code>https://github.com/isglobal-brge/curso_machine_learning/tree/main/data</code></pre>
 <p>Este material está licenciado bajo una <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAMAAABUFvrSAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAEZ0FNQQAAsY58+1GTAAAAAXNSR0IB2cksfwAAAW5QTFRF////////////////7+/v39/f1tXV09bS0tXS0tXR0dTR0dTQ0NTQ0NPPz9PPztLOztHNzdHNzdHMz8/PzdDMzNDMzNDLzM/Ly8/Ly8/Ky87Kys3Jyc3Jyc3IyMzIyMzHx8vHxsrGxsrFxcnFxcnExMnExMjDw8jDxMfDw8fCwsfCwcXAwMXAwMW/wMS/v8S+v8O+vsO+vsK9vcK9vcK8v7+/vMG8vMG7vMC8u8C7u8C6ur+6ur+5ub65ub64uL23t7y2tru1tbq0tLqztLmzs7iysrixsrexsbewsbawsLavsLWvr7Wur7SusLOvrrStrrOtr7KvrbOsrLKrr6+vq7Gqn6OenqCdn5+flpmWk5iTkZSRkZORj4+PiYyJhIaEhIWEgoWCgICAfX98fH98eXx5cHJvcHBwYGBgXV5dUFFQUFBQQ0RDQEBAPj8+NTY1MjMxMDAwKSkpKCkoICAgGxsbEBAQDg4ODQ4NAAAAlzoSDQAAAAN0Uk5TAAoO5yEBUwAAAvhJREFUeNq1lutX2kAQxWmXFDVGYy1EIjQ2VZDiu1CsRQQURYvV+qSKj6II8rANYOT+9z0JqIASo9Y5ydkP2f2d2Ts7d2N4jRcJgwEIBwO+SbdTFGw8ZzZz1n5BdLgnfLPBcCT6fW1jY3P78QEYEA76PWMu0W5lGbrNZGrrYNg+u+ga9fgVcmxtY/NJZAOCfs+IY4Bn6eN8RdlEJX9Ed1uFIfdnfzC8uBJbv5tyqqhMLKa0wQHPiEOwMInLW4Eu9xmzfdDtmQ0uLK3cSXmvBBTS6QJQ2tMC+8YcgpnOApAzSa83mZEBZIff2odGfYFQJNqc8s4VchQhhFA5XO1pgCddAxaFKyeNpBpxGSgNmwXXxMxcWE25fkkJGUIIoExESQPsFnkmC0gUuQmjBGQZq+j2BEKR5dUGLVLIvbkGkxxSrcHO92wCkIyENJL3u+2O8Zng/FJsvR5cRF0GFIqtwaKVvoTcSxrCKOOS7hPdXwLhxUYtUFC+Z6AKQgpoDRZ6joEkaYo4cMQKril/KLLcCE4TVYmqFmkNsK0rD9lIiDdXKCSrwwEhREae6Ve0WIiuPg3M0xVlW171BBe21CGjbLbSYR0c/To3H409TQquHTggREKZ8pbjEiRqqxxXtWjjRLdvLrzUAK4Vr5qwZvEsJsCrzExWF9Tk9gIm84e74BRyRN9xeyS4vkHSmg1yK4Wxt5yUIClDayn0t3SteLWq3RQvjQrN31O87e2dEiBl0tJDJmTrykImN8dtq6AOpIw8Y3OMf2s+bvptU+hJqFrc1yCfpmZDkWYX0mv0H9WWpvS2tH6w8z27e58JJVi7c2ImuNBkQvrBOOWZc0CqsyFKtU3+97OuaQBnXGe90RuTMvCHtpziuWCcmDvPm64m+t2vlmuq/YHqqwnGCcfs1l+mCcbSmgtSe8iDGQNnPEsnrq//fZrltXS4tk3oAOPvT2tPF91uMrXTDNv340JrjQ4hbsHAxeE0z1ksHD99eKFdl0dl/P//Cl+9EPcfS+yBAoqk3eUAAAAASUVORK5CYII=" /></p>
 
@@ -269,7 +301,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -310,7 +341,7 @@ gitbook.start({
 },
 "download": ["_main.pdf", "_main.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -326,7 +357,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

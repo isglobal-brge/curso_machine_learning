@@ -36,9 +36,11 @@ Este bookdown sirve como notas para el curso [Introducción al Aprendizaje autom
 
    1. Introducción al aprendizaje automático 
    2. Métodos de validación cruzada
-   3. Regresión Logística y nomogramas
-   4  Árboles de decisión: clasificación y regresión (CART), Bagged y Random Forest
-   5. Métodos para tratar datos desbalanceados
+   3. Árboles de decisión: clasificación y regresión (CART)
+   4. Métodos Boosting y Bagging
+   5. Método XGboost
+   6. Métodos para tratar datos desbalanceados
+   7. Modelos de reguralización
 
 
 
@@ -47,15 +49,14 @@ Este bookdown sirve como notas para el curso [Introducción al Aprendizaje autom
 Para poder reproducir todo el código de este libro se necesitan tener instaladas las siguientes librería
 
 ```
-install.packages(c("caret"))
-
+install.packages(c("caret", "tidyverse", "recipies", "glmnet"))
 ```
 
 Los datos están accesibles en esta carpeta
 
 
 ```
-https://github.com/isglobal-brge/curso_machine_learning/tree/main/datos
+https://github.com/isglobal-brge/curso_machine_learning/tree/main/data
 ```
 
 

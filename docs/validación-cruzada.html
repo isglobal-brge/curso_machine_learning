@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Validación cruzada | Introducción al Aprendizaje automático en ciencias de la salud</title>
   <meta name="description" content="3 Validación cruzada | Introducción al Aprendizaje automático en ciencias de la salud" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Validación cruzada | Introducción al Aprendizaje automático en ciencias de la salud" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Juan R González" />
 
 
-<meta name="date" content="2022-10-16" />
+<meta name="date" content="2023-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="introducción-al-aprendizaje-automático.html"/>
 <link rel="next" href="regresión-logística.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -93,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -106,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -203,7 +202,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#random-forest"><i class="fa fa-check"></i><b>6.5</b> Random Forest</a></li>
 <li class="chapter" data-level="6.6" data-path="árboles-de-decisión.html"><a href="árboles-de-decisión.html#random-forest-pn"><i class="fa fa-check"></i><b>6.6</b> Random Forest p&gt;&gt;n</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="respuesta-no-balanceada.html"><a href="respuesta-no-balanceada.html"><i class="fa fa-check"></i><b>7</b> Respuesta no balanceada</a></li>
+<li class="chapter" data-level="7" data-path="boosting.html"><a href="boosting.html"><i class="fa fa-check"></i><b>7</b> Boosting</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="boosting.html"><a href="boosting.html#cómo-funciona-el-boosting"><i class="fa fa-check"></i><b>7.1</b> Cómo funciona el <em>boosting</em></a></li>
+<li class="chapter" data-level="7.2" data-path="boosting.html"><a href="boosting.html#adaboost"><i class="fa fa-check"></i><b>7.2</b> AdaBoost</a></li>
+<li class="chapter" data-level="7.3" data-path="boosting.html"><a href="boosting.html#gbm-básico"><i class="fa fa-check"></i><b>7.3</b> GBM básico</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="boosting.html"><a href="boosting.html#boostingHiperparam"><i class="fa fa-check"></i><b>7.3.1</b> Hiperparámetros</a></li>
+<li class="chapter" data-level="7.3.2" data-path="boosting.html"><a href="boosting.html#implementación"><i class="fa fa-check"></i><b>7.3.2</b> Implementación</a></li>
+<li class="chapter" data-level="7.3.3" data-path="boosting.html"><a href="boosting.html#estrategia-general-de-tuning"><i class="fa fa-check"></i><b>7.3.3</b> Estrategia general de <em>tuning</em></a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="boosting.html"><a href="boosting.html#gbms-estocásticos"><i class="fa fa-check"></i><b>7.4</b> GBMs estocásticos</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="boosting.html"><a href="boosting.html#hiperparámetros-estocásticos"><i class="fa fa-check"></i><b>7.4.1</b> Hiperparámetros estocásticos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="boosting.html"><a href="boosting.html#xgboost"><i class="fa fa-check"></i><b>7.5</b> XGBoost</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="boosting.html"><a href="boosting.html#reguralización"><i class="fa fa-check"></i><b>7.5.1</b> Reguralización</a></li>
+<li class="chapter" data-level="7.5.2" data-path="boosting.html"><a href="boosting.html#estrategia-de-tuning"><i class="fa fa-check"></i><b>7.5.2</b> Estrategia de <em>tuning</em></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="boosting.html"><a href="boosting.html#otros-algoritmos-gbm"><i class="fa fa-check"></i><b>7.6</b> Otros algoritmos GBM</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="respuesta-no-balanceada.html"><a href="respuesta-no-balanceada.html"><i class="fa fa-check"></i><b>8</b> Respuesta no balanceada</a></li>
+<li class="chapter" data-level="9" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html"><i class="fa fa-check"></i><b>9</b> Modelos de regularización</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#introducción"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#cómo-regularizar"><i class="fa fa-check"></i><b>9.2</b> Cómo regularizar</a></li>
+<li class="chapter" data-level="9.3" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#implementación-en-r"><i class="fa fa-check"></i><b>9.3</b> Implementación en R</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#ejemplo-ridge-regression"><i class="fa fa-check"></i><b>9.3.1</b> Ejemplo: Ridge Regression</a></li>
+<li class="chapter" data-level="9.3.2" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#ejemplo-lasso"><i class="fa fa-check"></i><b>9.3.2</b> Ejemplo: Lasso</a></li>
+<li class="chapter" data-level="9.3.3" data-path="modelos-de-regularización.html"><a href="modelos-de-regularización.html#ejemplo-elastic-net"><i class="fa fa-check"></i><b>9.3.3</b> Ejemplo: Elastic Net</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -224,8 +255,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="validación-cruzada" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Validación cruzada</h1>
+<div id="validación-cruzada" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Validación cruzada<a href="validación-cruzada.html#validación-cruzada" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>La validación cruzada (CV por sus siglas en inglés) es la técnica que usamos para evaluar si un modelo está sobreajustado y para estimar cómo funcionará con nuevos datos.</p>
 <p>El sobreajuste es un peligro importante en el análisis predictivo, especialmente cuando se utilizan algoritmos de aprendizaje automático que, sin el ajuste adecuado, puede aprender datos de nuestra muestra casi a la perfección, esencialmente ajustando el ruido (o variabilidad). Cuando se utiliza un modelo de este tipo para predecir nuevos datos, con un ruido (o variabilidad) diferente, el rendimiento del modelo puede ser sorprendentemente malo. Usamos CV para ayudarnos a identificar y evitar tales situaciones. ¿Cómo podemos hacer esto? Muchos algoritmos de aprendizaje automático requieren que el usuario especifique ciertos parámetros (hiper-parámetros). Veremos más adelante que, por ejemplo, necesitaremos especificar un valor para <span class="math inline">\(m\)</span> que corresponde al número de predictores elegidos al azar que se utilizarán en cada división de árbol cuando usemos “random forest” como algoritmo de aprendizaje. Cuanto menor sea <span class="math inline">\(m\)</span>, más simple será el árbol. Podemos usar CV para elegir el valor de <span class="math inline">\(m\)</span> que minimiza la variación y reduce el sobreajuste. La regresión lineal no tiene parámetros que debe especificar el usuario, pero la CV aún nos ayuda a evaluar cuánto podría sobreajustarse un modelo a los datos de muestra.</p>
 <p>De manera breve, los algoritmos de cross-validation se pueden resumir como:</p>
@@ -235,8 +266,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Testa el modelo en los datos reservados.</li>
 </ul>
 <p>A continuación se describen algunas de las distintas técnicas de validación cruzada que existen.</p>
-<div id="validación-en-un-conjunto-de-datos-externo" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Validación en un conjunto de datos externo</h2>
+<div id="validación-en-un-conjunto-de-datos-externo" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Validación en un conjunto de datos externo<a href="validación-cruzada.html#validación-en-un-conjunto-de-datos-externo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La versión más simple de CV es el llamado método de conjunto de validación, que consta de los siguientes pasos:</p>
 <ol style="list-style-type: decimal">
 <li><em>Dividir los datos de la muestra en dos partes: un conjunto de entrenamiento y otro de validacións.</em> Los investigadores usan diferentes proporciones, pero es común seleccionar al azar el 70% de los datos como conjunto de entrenamiento y el 30% como conjunto de prueba o validación. . (Obviamente, debemos tener suficientes datos en la muestra para ajustar un modelo después de dividir los datos). Debido a que CV se basa en un muestreo aleatorio, nuestros resultados variarán a menos que usemos <code>set.seed ()</code>.</li>
@@ -283,8 +314,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">Sobreajuste</p>
 </div>
 </div>
-<div id="leave-one-out-cross-validation-loocv" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Leave-one-out cross validation (LOOCV)</h2>
+<div id="leave-one-out-cross-validation-loocv" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Leave-one-out cross validation (LOOCV)<a href="validación-cruzada.html#leave-one-out-cross-validation-loocv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Este método funciona de la siguiente manera:</p>
 <ul>
 <li>Extrae una observación de los datos y usa el resto para entrenar el modelo</li>
@@ -307,8 +338,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="k-fold-cross-validation-k-fold-cv" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> K-fold cross validation (K-fold CV)</h2>
+<div id="k-fold-cross-validation-k-fold-cv" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> K-fold cross validation (K-fold CV)<a href="validación-cruzada.html#k-fold-cross-validation-k-fold-cv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La diferencia con LOOCV es que este método evalúa el comportamiento del modelo en un conjunto de datos de distingo tamaño (K). El algoritmo es el siguiente:</p>
 <ul>
 <li>Separa los datos en k-subconjuntos (k-fold) de forma aleatoria</li>
@@ -334,8 +365,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="uso-de-cv-para-estimar-el-hiper-parámetro" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Uso de CV para estimar el hiper-parámetro</h2>
+<div id="uso-de-cv-para-estimar-el-hiper-parámetro" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Uso de CV para estimar el hiper-parámetro<a href="validación-cruzada.html#uso-de-cv-para-estimar-el-hiper-parámetro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Si el algoritmo de aprendizaje automático que vamos a utilizar para realizar predicciones tiene un parámetro que controla el comportamiento (por ejemplo grado de polinomio en regresión no lineal, o el número de nodos en árboles de clasificación) éste podría elegirse de forma que minimizara el error de clasificación. Esta selección también puede dar problemas de sobre ajuste ya que podríamos seleccionar de forma que ajustara perféctamente a nuestros datos.</p>
 <p>Para evitar el problema, se puede utilizar cualquiera de las técnicas vistas con anterioridad. Aquí tenemos un ejemplo donde se ha usado un modelo de aprendizaje que se basa en introducir términos polinómicos de varaibles para realizar una mejor predicción mediante regresión lineal usando sólo términos lineales.</p>
 <div class="figure">
@@ -343,8 +374,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">Sobreajuste según un hiper-parámetro</p>
 </div>
 </div>
-<div id="uso-de-bootstrap" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Uso de bootstrap</h2>
+<div id="uso-de-bootstrap" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Uso de bootstrap<a href="validación-cruzada.html#uso-de-bootstrap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Si en vez de partir nuestra muestra en <span class="math inline">\(K\)</span> submuestras, realizamos una selección aleatoria de muestras con reemplazamiento, nos encontraremos ante una aproximación de tipo <em>bootstrap</em> que es una técnica muy usada en estadística para hacer inferencia cuando la distribución del estadístico es desconocida basada en el remuestreo [<a href="https://biocosas.github.io/R/100_bootstrap.html">aquí</a> tenéis una descripción sencilla de esta metodología].</p>
 <div class="figure">
 <img src="figures/bootstrap_1.jpg" style="width:60.0%" alt="" />
@@ -364,8 +395,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Calcula el promedio de los <span class="math inline">\(B\)</span> errores que han sido guardados. Este valor es el error <em>bootstrap</em> y nos sirve para evaluar el comportamiento de nuestro modelo.</li>
 </ul>
 </div>
-<div id="imputación-de-datos-faltantes-información-extra-para-los-que-venís-al-curso" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Imputación de datos faltantes (Información extra para los que venís al curso)</h2>
+<div id="imputación-de-datos-faltantes-información-extra-para-los-que-venís-al-curso" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Imputación de datos faltantes (Información extra para los que venís al curso)<a href="validación-cruzada.html#imputación-de-datos-faltantes-información-extra-para-los-que-venís-al-curso" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La mayoría de métodos para aprendizaje automático requiren casos completos. Sin embargo, los datos reales a menudo tienen observaciones faltantes. La función <code>lm ()</code>, analiza casos completos sin indicar nada al usuario, pero … ¿Deberíamos eliminar estas filas o imputar las observaciones que faltan? Casi siempre es mejor imputar, aunque, en la práctica puede que no valga la pena imputar algunas observaciones faltantes, ya que eliminarlas no suele cambiar el ajuste en absoluto. La imputación de datos faltantes es un tema extenso y complicado; aquí haremos una breve introducción y discutiremos los principales temas a tener en cuenta.</p>
 <p>Tipos de valores perdidos:</p>
 <ul>
@@ -398,21 +429,21 @@ y</p>
 <span id="cb7-8"><a href="validación-cruzada.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(carseats_miss)</span></code></pre></div>
 <pre><code>Rows: 400
 Columns: 11
-$ Sales       &lt;dbl&gt; 9.50, 11.22, 10.06, 7.40, 4.15, 10.81, 6.63, 11.85, 6.54, 4.69, 9.01, 11.96, 3.98, 10.96, 11.17, 8.71, 7.58, 12.29, 1~
-$ CompPrice   &lt;dbl&gt; 138, 111, 113, 117, 141, 124, 115, NA, NA, NA, 121, 117, NA, 115, 107, NA, 118, NA, 110, 129, 125, 134, 128, NA, 145,~
-$ Income      &lt;dbl&gt; 73, 48, 35, 100, 64, 113, NA, 81, 110, 113, 78, 94, NA, 28, 117, 95, 32, 74, 110, 76, NA, NA, 46, NA, 119, 32, 115, 1~
-$ Advertising &lt;dbl&gt; 11, 16, NA, 4, 3, 13, NA, 15, 0, 0, 9, 4, 2, NA, 11, 5, NA, 13, 0, 16, 2, 12, 6, 0, 16, 0, 11, 0, NA, 15, NA, 16, 12,~
-$ Population  &lt;dbl&gt; 276, 260, 269, NA, 340, 501, 45, 425, 108, 131, 150, 503, NA, 29, 148, 400, 284, 251, 408, 58, 367, 239, 497, 292, 29~
-$ Price       &lt;dbl&gt; 120, NA, NA, 97, 128, 72, 108, 120, NA, 124, 100, NA, NA, NA, 118, 144, 110, 131, 68, 121, NA, 109, 138, NA, 113, 82,~
-$ ShelveLoc   &lt;fct&gt; Bad, NA, Good, NA, Bad, Bad, Good, NA, Good, Good, Bad, Medium, NA, Medium, Medium, Good, Medium, Medium, Medium, Goo~
-$ Age         &lt;dbl&gt; 42, 65, NA, 55, 38, NA, 71, 67, 76, 76, 26, 50, NA, 53, 52, 76, 63, 52, 46, 69, NA, NA, NA, 79, 42, 54, 50, 64, NA, 5~
-$ Education   &lt;dbl&gt; NA, 10, 12, NA, 13, 16, 15, 10, 10, 17, 10, 13, NA, NA, NA, 18, 13, 10, 17, 12, 18, NA, NA, NA, 12, 11, 11, 17, 11, 1~
-$ Urban       &lt;fct&gt; NA, Yes, Yes, Yes, Yes, NA, NA, Yes, No, NA, NA, Yes, Yes, Yes, Yes, No, Yes, Yes, No, NA, Yes, No, Yes, NA, Yes, No,~
-$ US          &lt;fct&gt; Yes, Yes, Yes, Yes, No, Yes, No, Yes, NA, Yes, Yes, Yes, No, Yes, Yes, No, No, NA, Yes, Yes, NA, Yes, No, No, NA, No,~</code></pre>
+$ Sales       &lt;dbl&gt; 9.50, 11.22, 10.06, 7.40, 4.15, 10.81, 6.63, 11.85, 6.54, 4.69, 9.01, 11.96, 3.98, 10.96, 11.17, …
+$ CompPrice   &lt;dbl&gt; 138, 111, 113, 117, 141, 124, 115, NA, NA, NA, 121, 117, NA, 115, 107, NA, 118, NA, 110, 129, 125…
+$ Income      &lt;dbl&gt; 73, 48, 35, 100, 64, 113, NA, 81, 110, 113, 78, 94, NA, 28, 117, 95, 32, 74, 110, 76, NA, NA, 46,…
+$ Advertising &lt;dbl&gt; 11, 16, NA, 4, 3, 13, NA, 15, 0, 0, 9, 4, 2, NA, 11, 5, NA, 13, 0, 16, 2, 12, 6, 0, 16, 0, 11, 0,…
+$ Population  &lt;dbl&gt; 276, 260, 269, NA, 340, 501, 45, 425, 108, 131, 150, 503, NA, 29, 148, 400, 284, 251, 408, 58, 36…
+$ Price       &lt;dbl&gt; 120, NA, NA, 97, 128, 72, 108, 120, NA, 124, 100, NA, NA, NA, 118, 144, 110, 131, 68, 121, NA, 10…
+$ ShelveLoc   &lt;fct&gt; Bad, NA, Good, NA, Bad, Bad, Good, NA, Good, Good, Bad, Medium, NA, Medium, Medium, Good, Medium,…
+$ Age         &lt;dbl&gt; 42, 65, NA, 55, 38, NA, 71, 67, 76, 76, 26, 50, NA, 53, 52, 76, 63, 52, 46, 69, NA, NA, NA, 79, 4…
+$ Education   &lt;dbl&gt; NA, 10, 12, NA, 13, 16, 15, 10, 10, 17, 10, 13, NA, NA, NA, 18, 13, 10, 17, 12, 18, NA, NA, NA, 1…
+$ Urban       &lt;fct&gt; NA, Yes, Yes, Yes, Yes, NA, NA, Yes, No, NA, NA, Yes, Yes, Yes, Yes, No, Yes, Yes, No, NA, Yes, N…
+$ US          &lt;fct&gt; Yes, Yes, Yes, Yes, No, Yes, No, Yes, NA, Yes, Yes, Yes, No, Yes, Yes, No, No, NA, Yes, Yes, NA, …</code></pre>
 <p>Observamos que hay datos faltantes. Podemos tener una estadística global de la falta de información que hay en nuestros tanto de forma numérica mediante la librería <code>skimr</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="validación-cruzada.html#cb9-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(carseats_miss)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-6">Table 3.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-30">Table 3.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -454,6 +485,14 @@ $ US          &lt;fct&gt; Yes, Yes, Yes, Yes, No, Yes, No, Yes, NA, Yes, Yes, Ye
 </table>
 <p><strong>Variable type: factor</strong></p>
 <table>
+<colgroup>
+<col width="17%" />
+<col width="12%" />
+<col width="17%" />
+<col width="9%" />
+<col width="10%" />
+<col width="32%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">skim_variable</th>
@@ -492,7 +531,20 @@ $ US          &lt;fct&gt; Yes, Yes, Yes, Yes, No, Yes, No, Yes, NA, Yes, Yes, Ye
 </tbody>
 </table>
 <p><strong>Variable type: numeric</strong></p>
-<table>
+<table style="width:100%;">
+<colgroup>
+<col width="15%" />
+<col width="11%" />
+<col width="15%" />
+<col width="7%" />
+<col width="7%" />
+<col width="3%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="6%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">skim_variable</th>
@@ -626,7 +678,7 @@ $ US          &lt;fct&gt; Yes, Yes, Yes, Yes, No, Yes, No, Yes, NA, Yes, Yes, Ye
 <p>La librería <code>VIM</code> nos puede ayudar a tener esta información de forma gráfica:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="validación-cruzada.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span>
 <span id="cb14-2"><a href="validación-cruzada.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aggr</span>(carseats_miss)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-32-1.png" width="672" /></p>
 <p>Ahora faltan muchas observaciones. Cuando ajustamos un modelo de regresión para la variable Sales observamos que <code>lm ()</code> analiza casos completos y se estima un modelo basado en un subconjunto muy pequeño de datos.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="validación-cruzada.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Sales <span class="sc">~</span> CompPrice <span class="sc">+</span> Income <span class="sc">+</span> Advertising <span class="sc">+</span> Population <span class="sc">+</span> Price, <span class="at">data =</span> carseats_miss)</span></code></pre></div>
 <pre><code>
@@ -640,13 +692,13 @@ Coefficients:
 <p>Sólo tenemos 93 observaciones de las 400 originales! Demostraremos la imputación múltiple usando la función <code>mice ()</code> de la librería <code>mice</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="validación-cruzada.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
 <span id="cb17-2"><a href="validación-cruzada.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Carseats)</span></code></pre></div>
-<pre><code> [1] &quot;Sales&quot;       &quot;CompPrice&quot;   &quot;Income&quot;      &quot;Advertising&quot; &quot;Population&quot;  &quot;Price&quot;       &quot;ShelveLoc&quot;   &quot;Age&quot;         &quot;Education&quot;  
-[10] &quot;Urban&quot;       &quot;US&quot;         </code></pre>
+<pre><code> [1] &quot;Sales&quot;       &quot;CompPrice&quot;   &quot;Income&quot;      &quot;Advertising&quot; &quot;Population&quot;  &quot;Price&quot;       &quot;ShelveLoc&quot;   &quot;Age&quot;        
+ [9] &quot;Education&quot;   &quot;Urban&quot;       &quot;US&quot;         </code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="validación-cruzada.html#cb19-1" aria-hidden="true" tabindex="-1"></a>carseats_imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(carseats_miss, <span class="at">printFlag =</span> F)</span></code></pre></div>
 <p>El objeto <code>carseats_imp</code> incluye (entre muchas otras cosas) <span class="math inline">\(m\)</span> conjuntos de datos imputados (la configuración predeterminada es <span class="math inline">\(m\)</span> = 5). Los conjuntos de datos imputados difieren porque las imputaciones se extraen aleatoriamente de distribuciones de valores plausibles. Podemos visualizar la variabilidad de los predictores en estos conjuntos de datos imputados usando la función <code>densityplot ()</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="validación-cruzada.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
 <span id="cb20-2"><a href="validación-cruzada.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">densityplot</span>(carseats_imp)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-35-1.png" width="672" /></p>
 <p>Las líneas azules continuas representan la distribución real de los predictores, mientras que las líneas rojas muestran las distribuciones imputadas. El siguiente paso es usar estos conjuntos de datos imputados para promediar los <span class="math inline">\(\beta\)</span>s y los SE utilizando la función <code>pool ()</code> de la librería <code>mice</code>.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="validación-cruzada.html#cb21-1" aria-hidden="true" tabindex="-1"></a>carseats_model_imp <span class="ot">&lt;-</span> <span class="fu">with</span>(<span class="at">data =</span> carseats_imp, </span>
 <span id="cb21-2"><a href="validación-cruzada.html#cb21-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">exp =</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> CompPrice <span class="sc">+</span> Income <span class="sc">+</span> Advertising <span class="sc">+</span> Population <span class="sc">+</span> Price))</span>
@@ -693,34 +745,27 @@ Coefficients:
 <span id="cb26-8"><a href="validación-cruzada.html#cb26-8" aria-hidden="true" tabindex="-1"></a>bag_imp <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="fu">preProcess</span>(carseats_miss_num, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;bagImpute&quot;</span>)), carseats_miss_num)</span></code></pre></div>
 <p>El paquete <code>missForest</code> ofrece otra solución de imputación única, que es más simple que las funciones de <code>caret</code> porque maneja datos categóricos automáticamente. Si bien <code>missForest</code> funciona bien para conjuntos de datos pequeños y proporciona imputaciones de buena calidad, es muy lento en conjuntos de datos grandes. De hecho, lo mismo ocurrirá con la función <code>bagImpute ()</code> de <code>caret</code>. En tales casos, podría tener sentido usar la función <code>medianImpute ()</code> de <code>caret</code> en su lugar que es muy rápida.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="validación-cruzada.html#cb27-1" aria-hidden="true" tabindex="-1"></a>mf_imp <span class="ot">&lt;-</span> <span class="fu">missForest</span>(carseats_miss, <span class="at">verbose =</span> F)</span></code></pre></div>
-<pre><code>  missForest iteration 1 in progress...done!
-  missForest iteration 2 in progress...done!
-  missForest iteration 3 in progress...done!
-  missForest iteration 4 in progress...done!
-  missForest iteration 5 in progress...done!
-  missForest iteration 6 in progress...done!
-  missForest iteration 7 in progress...done!</code></pre>
 <p>Comparemos los errores asociados con estos diferentes métodos de imputación. Podemos hacer esto porque, habiendo creado las observaciones faltantes en primer lugar, podemos comparar las observaciones imputadas con las observaciones verdaderas calculando la suma de los cuadrados de la diferencia. Para las imputaciones usando <code>mice ()</code> calculamos los errores para cada uno de los 5 conjuntos de datos imputados. Los resultados de <code>knnImpute ()</code> no son comparables porque la función automáticamente centra y escala las variables y los hemos omitido.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="validación-cruzada.html#cb29-1" aria-hidden="true" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Method =</span> <span class="fu">c</span>(<span class="st">&quot;mice 1&quot;</span>, </span>
-<span id="cb29-2"><a href="validación-cruzada.html#cb29-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 2&quot;</span>, </span>
-<span id="cb29-3"><a href="validación-cruzada.html#cb29-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 3&quot;</span>, </span>
-<span id="cb29-4"><a href="validación-cruzada.html#cb29-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 4&quot;</span>, </span>
-<span id="cb29-5"><a href="validación-cruzada.html#cb29-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 5&quot;</span>, </span>
-<span id="cb29-6"><a href="validación-cruzada.html#cb29-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;medianImpute&quot;</span>, </span>
-<span id="cb29-7"><a href="validación-cruzada.html#cb29-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;bagImpute&quot;</span>, </span>
-<span id="cb29-8"><a href="validación-cruzada.html#cb29-8" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;missForest&quot;</span>),</span>
-<span id="cb29-9"><a href="validación-cruzada.html#cb29-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">RMSE =</span> <span class="fu">c</span>(<span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">1</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
-<span id="cb29-10"><a href="validación-cruzada.html#cb29-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">2</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
-<span id="cb29-11"><a href="validación-cruzada.html#cb29-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">3</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
-<span id="cb29-12"><a href="validación-cruzada.html#cb29-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">4</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
-<span id="cb29-13"><a href="validación-cruzada.html#cb29-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">5</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
-<span id="cb29-14"><a href="validación-cruzada.html#cb29-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(med_imp, <span class="fu">make_df_numeric</span>(Carseats)),</span>
-<span id="cb29-15"><a href="validación-cruzada.html#cb29-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(bag_imp, <span class="fu">make_df_numeric</span>(Carseats)),</span>
-<span id="cb29-16"><a href="validación-cruzada.html#cb29-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(mf_imp<span class="sc">$</span>ximp), <span class="fu">make_df_numeric</span>(Carseats))))</span>
-<span id="cb29-17"><a href="validación-cruzada.html#cb29-17" aria-hidden="true" tabindex="-1"></a>                         </span>
-<span id="cb29-18"><a href="validación-cruzada.html#cb29-18" aria-hidden="true" tabindex="-1"></a>comparison <span class="sc">%&gt;%</span></span>
-<span id="cb29-19"><a href="validación-cruzada.html#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RMSE =</span> <span class="fu">round</span>(RMSE)) <span class="sc">%&gt;%</span></span>
-<span id="cb29-20"><a href="validación-cruzada.html#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(RMSE)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="validación-cruzada.html#cb28-1" aria-hidden="true" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Method =</span> <span class="fu">c</span>(<span class="st">&quot;mice 1&quot;</span>, </span>
+<span id="cb28-2"><a href="validación-cruzada.html#cb28-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 2&quot;</span>, </span>
+<span id="cb28-3"><a href="validación-cruzada.html#cb28-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 3&quot;</span>, </span>
+<span id="cb28-4"><a href="validación-cruzada.html#cb28-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 4&quot;</span>, </span>
+<span id="cb28-5"><a href="validación-cruzada.html#cb28-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mice 5&quot;</span>, </span>
+<span id="cb28-6"><a href="validación-cruzada.html#cb28-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;medianImpute&quot;</span>, </span>
+<span id="cb28-7"><a href="validación-cruzada.html#cb28-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;bagImpute&quot;</span>, </span>
+<span id="cb28-8"><a href="validación-cruzada.html#cb28-8" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;missForest&quot;</span>),</span>
+<span id="cb28-9"><a href="validación-cruzada.html#cb28-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">RMSE =</span> <span class="fu">c</span>(<span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">1</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb28-10"><a href="validación-cruzada.html#cb28-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">2</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb28-11"><a href="validación-cruzada.html#cb28-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">3</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb28-12"><a href="validación-cruzada.html#cb28-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">4</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb28-13"><a href="validación-cruzada.html#cb28-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(<span class="fu">complete</span>(carseats_imp, <span class="dv">5</span>)), <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb28-14"><a href="validación-cruzada.html#cb28-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(med_imp, <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb28-15"><a href="validación-cruzada.html#cb28-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(bag_imp, <span class="fu">make_df_numeric</span>(Carseats)),</span>
+<span id="cb28-16"><a href="validación-cruzada.html#cb28-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">rmse</span>(<span class="fu">make_df_numeric</span>(mf_imp<span class="sc">$</span>ximp), <span class="fu">make_df_numeric</span>(Carseats))))</span>
+<span id="cb28-17"><a href="validación-cruzada.html#cb28-17" aria-hidden="true" tabindex="-1"></a>                         </span>
+<span id="cb28-18"><a href="validación-cruzada.html#cb28-18" aria-hidden="true" tabindex="-1"></a>comparison <span class="sc">%&gt;%</span></span>
+<span id="cb28-19"><a href="validación-cruzada.html#cb28-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RMSE =</span> <span class="fu">round</span>(RMSE)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-20"><a href="validación-cruzada.html#cb28-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(RMSE)</span></code></pre></div>
 <pre><code>        Method RMSE
 1       mice 1   NA
 2       mice 2   NA
@@ -750,7 +795,6 @@ Coefficients:
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -791,7 +835,7 @@ gitbook.start({
 },
 "download": ["_main.pdf", "_main.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -807,7 +851,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

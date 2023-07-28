@@ -295,7 +295,7 @@ La variable Cabin está ausente para casi un 80% de las observaciones, con un po
 
 La imputación es un proceso complejo que debe de realizarse con detenimiento, identificando cuidadosamente qué variables son las adecuadas para cada imputación. La librería `recipes` permite 4 métodos de imputación distintos:
 
-- `step_bagimpute()`: imputación vía Bagged Trees.
+- `step_impute_bag()`: imputación vía Bagged Trees.
 
 - `step_knnimpute()`: imputación vía K-Nearest Neighbors.
 
@@ -330,7 +330,7 @@ objeto_recipe
 ```
 
 ```{r}
-objeto_recipe <- objeto_recipe %>% step_bagimpute(Age)
+objeto_recipe <- objeto_recipe %>% step_impute_bag(Age)
 objeto_recipe
 ```
 
@@ -445,7 +445,7 @@ Podemos empezar con unos gráficos para las variables continuas de la siguiente 
 library(caret)
 library(AppliedPredictiveModeling)
 transparentTheme(trans = .4)
-featurePlot(x = select(datos_train_transf, c("Age", "Fare")), 
+featurePlot(x = dplyr::select(datos_train_transf, c("Age", "Fare")), 
             y = datos_train_transf$Survived, 
             plot = "pairs",
             ## Add a key at the top
@@ -458,7 +458,7 @@ featurePlot(x = select(datos_train_transf, c("Age", "Fare")),
 
 ```{r}
 transparentTheme(trans = .9)
-featurePlot(x = select(datos_train_transf, c("Age", "Fare")), 
+featurePlot(x = dplyr::select(datos_train_transf, c("Age", "Fare")), 
             y = datos_train_transf$Survived,
             plot = "density", 
             ## Pass in options to xyplot() to 
@@ -475,7 +475,7 @@ featurePlot(x = select(datos_train_transf, c("Age", "Fare")),
 
 
 ```{r}
-featurePlot(x = select(datos_train_transf, c("Age", "Fare")), 
+featurePlot(x = dplyr::select(datos_train_transf, c("Age", "Fare")), 
             y = datos_train_transf$Survived, 
             plot = "box", 
             ## Pass in options to bwplot() 
@@ -599,7 +599,7 @@ Hagamos algunos de los gráficos que hemos visto
 ``` {r}
 library(AppliedPredictiveModeling)
 transparentTheme(trans = .4)
-featurePlot(x = select(breast_train_prep, 1:6), 
+featurePlot(x = dplyr::select(breast_train_prep, 1:6), 
             y = breast_train_prep$diagnosis, 
             plot = "pairs",
             ## Add a key at the top
