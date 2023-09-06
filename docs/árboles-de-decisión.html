@@ -23,7 +23,7 @@
 <meta name="author" content="Juan R González" />
 
 
-<meta name="date" content="2023-07-28" />
+<meta name="date" content="2023-09-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -295,7 +295,7 @@ Para árboles de clasificación, es el índice de Gini,</p>
 <span id="cb180-6"><a href="árboles-de-decisión.html#cb180-6" aria-hidden="true" tabindex="-1"></a>oj_dat <span class="ot">&lt;-</span> ISLR<span class="sc">::</span>OJ</span>
 <span id="cb180-7"><a href="árboles-de-decisión.html#cb180-7" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(oj_dat)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-126">Table 6.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-102">Table 6.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -653,7 +653,7 @@ node), split, n, loss, yval, (yprob)
 <p>La salida comienza con el nodo raíz. La clase predicha en la raíz es <code>CH</code> y esta predicción produce 334 errores en las 857 observaciones para una tasa de éxito (precisión) del 61% y una tasa de error del 39%. Los nodos secundarios del nodo “x” están etiquetados como 2x) y 2x + 1), por lo que los nodos secundarios de 1) son 2) y 3), y los nodos secundarios de 2) son 4) y 5). Los nodos terminales están etiquetados con un asterisco (*).</p>
 <p>Sorprendentemente, solo 3 de las 17 variables se utilizaron en el árbol completo: LoyalCH (lealtad de marca del cliente para CH), PriceDiff (precio relativo de MM sobre CH) y SalePriceMM (precio absoluto de MM). La primera división está en LoyalCH = 0.48285. Aquí hay un diagrama del árbol completo (sin podar).</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="árboles-de-decisión.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(oj_mdl_cart_full, <span class="at">yesno =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-129-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-105-1.png" width="672" /></p>
 <p>Las cajas muestran la clasificación del nodo (según la moda), la proporción de observaciones que no son <code>CH</code> y la proporción de observaciones incluidas en el nodo.</p>
 <p><code>rpart ()</code> no solo hizo crecer el árbol completo, sino que identificó el conjunto de parámetros de complejidad de costos y midió el rendimiento del modelo de cada árbol correspondiente mediante validación cruzada. <code>printcp ()</code> muestra los posibles valores de <span class="math inline">\(c_p\)</span>. La siguiente tabla se puede utilizar esta tabla para decidir cómo podar el árbol.</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="árboles-de-decisión.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">printcp</span>(oj_mdl_cart_full)</span></code></pre></div>
@@ -697,7 +697,7 @@ n= 857
 4 0.01000000      5 0.4281437 0.4640719 0.03373631  0.4978082 min xerror</code></pre>
 <p>El árbol más simple que usa la regla 1-SE es <span class="math inline">\(c_p = 0.01347305\)</span> (error CV = 0.18). Afortunadamente, <code>plotcp ()</code> nos da una representación gráfica de la relación entre <code>xerror</code> y <code>cp</code>.</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="árboles-de-decisión.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotcp</span>(oj_mdl_cart_full, <span class="at">upper =</span> <span class="st">&quot;splits&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-133-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-109-1.png" width="672" /></p>
 <p>La línea discontinua se establece en el mínimo <code>xerror + xstd</code>. El eje superior muestra el número de divisiones en el árbol. NOTA: No estoy seguro de por qué los valores de CP no son los mismos que en la tabla (están cerca, pero no son los mismos). La figura sugiere que debería podar a 5 o 3 divisiones. Vemos que esta curva nunca llega al mínimo, sigue disminuyendo en 5 divisiones. El valor del parámetro de ajuste predeterminado <code>cp = 0.01</code> puede ser demasiado grande, así que lo cambiaremos a <code>cp = 0.001</code> y empezaremos de nuevo.</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="árboles-de-decisión.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb192-2"><a href="árboles-de-decisión.html#cb192-2" aria-hidden="true" tabindex="-1"></a>oj_mdl_cart_full <span class="ot">&lt;-</span> <span class="fu">rpart</span>(</span>
@@ -757,14 +757,14 @@ node), split, n, loss, yval, (yprob)
        15) LoyalCH&lt; 0.035047 57   1 MM (0.01754386 0.98245614) *</code></pre>
 <p>Este es un árbol mucho más grande. ¿Encontramo un valor <code>cp</code> que produce un mínimo?</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="árboles-de-decisión.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotcp</span>(oj_mdl_cart_full, <span class="at">upper =</span> <span class="st">&quot;splits&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-135-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-111-1.png" width="672" /></p>
 <p>Sí, el mínimo está en CP = 0.011 con 5 divisiones. El mínimo + 1 SE está en CP = 0.021 con 3 divisiones. Podaremos entonces el árbol en 3.</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="árboles-de-decisión.html#cb195-1" aria-hidden="true" tabindex="-1"></a>oj_mdl_cart <span class="ot">&lt;-</span> <span class="fu">prune</span>(</span>
 <span id="cb195-2"><a href="árboles-de-decisión.html#cb195-2" aria-hidden="true" tabindex="-1"></a>   oj_mdl_cart_full,</span>
 <span id="cb195-3"><a href="árboles-de-decisión.html#cb195-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">cp =</span> oj_mdl_cart_full<span class="sc">$</span>cptable[oj_mdl_cart_full<span class="sc">$</span>cptable[, <span class="dv">2</span>] <span class="sc">==</span> <span class="dv">3</span>, <span class="st">&quot;CP&quot;</span>]</span>
 <span id="cb195-4"><a href="árboles-de-decisión.html#cb195-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb195-5"><a href="árboles-de-decisión.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(oj_mdl_cart, <span class="at">yesno =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-136-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-112-1.png" width="672" /></p>
 <p>El indicador de compra más “importante” parece ser <code>LoyalCH</code>. De la <a href="https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf">vignette de rpart</a> (página 12) tenemos que:</p>
 <pre><code>An overall measure of variable importance is the sum of the goodness of split measures for each split for which it was the primary variable, plus goodness (adjusted agreement) for all splits in which it was a surrogate.</code></pre>
 <p>“Surrogate” (variable subrogada[^La FDA define una variable subrogada como “una medida de laboratorio o signo físico que se usa en ensayos terapéuticos como sustituto de una variable clínicamente significativa que es una medida directa sobre lo que siente un paciente, sus funciones o su supervivencia y que se espera que prediga el efecto de la terapia]) se refieren a características alternativas para que un nodo maneje los datos faltantes. Para cada división, CART evalúa una variedad de divisiones alternativas”sustitutas” para usar cuando el valor de la característica para la división principal es NA. Las divisiones sustitutas son divisiones que producen resultados similares a la división original.</p>
@@ -778,7 +778,7 @@ node), split, n, loss, yval, (yprob)
 <span id="cb197-7"><a href="árboles-de-decisión.html#cb197-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb197-8"><a href="árboles-de-decisión.html#cb197-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
 <span id="cb197-9"><a href="árboles-de-decisión.html#cb197-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Importancia mediante clasificación simple&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-137-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-113-1.png" width="672" /></p>
 <p><code>LoyalCH</code> es, con mucho, la variable más importante, como se esperaba de su posición en la parte superior del árbol así como en el siguiente nivel abajo.</p>
 <p>Podemos ver cómo aparecen los variables subrogadas en el modelo con la función <code>summary()</code>.</p>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="árboles-de-decisión.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(oj_mdl_cart)</span></code></pre></div>
@@ -793,10 +793,10 @@ rpart(formula = Purchase ~ ., data = oj_train, method = &quot;class&quot;,
 3 0.01347305      3 0.4550898 0.4700599 0.03390486
 
 Variable importance
-       LoyalCH      PriceDiff    SalePriceMM        StoreID WeekofPurchase         DiscMM        PriceMM 
-            67              9              5              4              4              3              3 
-     PctDiscMM        PriceCH 
-             3              1 
+       LoyalCH      PriceDiff    SalePriceMM        StoreID WeekofPurchase         DiscMM 
+            67              9              5              4              4              3 
+       PriceMM      PctDiscMM        PriceCH 
+             3              3              1 
 
 Node number 1: 857 observations,    complexity param=0.4790419
   predicted class=CH  expected loss=0.3897316  P(node) =1
@@ -907,7 +907,7 @@ Prediction  CH  MM
 <span id="cb202-2"><a href="árboles-de-decisión.html#cb202-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Clasificación: Predicho vs. Observado&quot;</span>,</span>
 <span id="cb202-3"><a href="árboles-de-decisión.html#cb202-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Observado&quot;</span>,</span>
 <span id="cb202-4"><a href="árboles-de-decisión.html#cb202-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Predicho&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-140-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-116-1.png" width="672" /></p>
 </div>
 <div id="área-bajo-la-curva-roc" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Área bajo la curva ROC<a href="árboles-de-decisión.html#área-bajo-la-curva-roc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -918,7 +918,7 @@ Prediction  CH  MM
 <span id="cb203-3"><a href="árboles-de-decisión.html#cb203-3" aria-hidden="true" tabindex="-1"></a>roc.car <span class="ot">&lt;-</span> <span class="fu">roc</span>(oj_test<span class="sc">$</span>Purchase, pred2, <span class="at">print.auc=</span><span class="cn">TRUE</span>, </span>
 <span id="cb203-4"><a href="árboles-de-decisión.html#cb203-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">ci=</span><span class="cn">TRUE</span>,</span>
 <span id="cb203-5"><a href="árboles-de-decisión.html#cb203-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-141-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-117-1.png" width="672" /></p>
 <div id="entrenamiento-con-caret" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Entrenamiento con <code>caret</code><a href="árboles-de-decisión.html#entrenamiento-con-caret" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>También podemos ajustar el modelo con la función <code>caret::train ()</code>. Recordemo que hay dos formas de ajustar los hiperparámetros cuando usamos <code>train ()</code>:</p>
@@ -1004,7 +1004,7 @@ ROC was used to select the optimal model using the largest value.
 The final value used for the model was cp = 0.0055.</code></pre>
 <p>El mejor modelo se consigue con CP = 0.0082. A continuación podemos ver las precisiones de validación cruzada para los valores de CP candidatos.</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="árboles-de-decisión.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(oj_mdl_cart2)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-146-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-122-1.png" width="672" /></p>
 <p>Estos son los resultados para el modelo final:</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="árboles-de-decisión.html#cb211-1" aria-hidden="true" tabindex="-1"></a>oj_mdl_cart2<span class="sc">$</span>finalModel</span></code></pre></div>
 <pre><code>n= 857 
@@ -1032,7 +1032,7 @@ node), split, n, loss, yval, (yprob)
          27) SpecialCH&lt; 0.5 61  10 MM (0.16393443 0.83606557) *
       7) LoyalCH&lt; 0.2761415 174  22 MM (0.12643678 0.87356322) *</code></pre>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="árboles-de-decisión.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(oj_mdl_cart2<span class="sc">$</span>finalModel)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-148-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-124-1.png" width="672" /></p>
 <p>Veamos el rendimiento en la muestra test:</p>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="árboles-de-decisión.html#cb214-1" aria-hidden="true" tabindex="-1"></a>pred3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(oj_mdl_cart2, <span class="at">newdata =</span> oj_test, <span class="at">type =</span> <span class="st">&quot;raw&quot;</span>) </span>
 <span id="cb214-2"><a href="árboles-de-decisión.html#cb214-2" aria-hidden="true" tabindex="-1"></a>oj_cm_cart2 <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(pred3,  oj_test<span class="sc">$</span>Purchase)</span>
@@ -1069,7 +1069,7 @@ Prediction  CH  MM
 <span id="cb216-2"><a href="árboles-de-decisión.html#cb216-2" aria-hidden="true" tabindex="-1"></a>roc.car2 <span class="ot">&lt;-</span> <span class="fu">roc</span>(oj_test<span class="sc">$</span>Purchase, pred4, <span class="at">print.auc=</span><span class="cn">TRUE</span>, </span>
 <span id="cb216-3"><a href="árboles-de-decisión.html#cb216-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">ci=</span><span class="cn">TRUE</span>,</span>
 <span id="cb216-4"><a href="árboles-de-decisión.html#cb216-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-150-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-126-1.png" width="672" /></p>
 <p>Podemos comparar ambas curvas ROC mediante el <a href="https://www.jstor.org/stable/pdf/2531595.pdf?seq=1">test de DeLong</a></p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="árboles-de-decisión.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">roc.test</span>(roc.car, roc.car2)</span></code></pre></div>
 <pre><code>
@@ -1085,7 +1085,7 @@ AUC of roc1 AUC of roc2
   0.8848471   0.9162651 </code></pre>
 <p>Finalmente, podemos crear fácilmente la gráfica de importancia de variables con la función <code>varImp ()</code>. La lealtad a la marca es lo más importante, seguida de la diferencia de precio.</p>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="árboles-de-decisión.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">varImp</span>(oj_mdl_cart2), <span class="at">main=</span><span class="st">&quot;Importancia de variables con CART (caret)&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-152-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-128-1.png" width="672" /></p>
 <p>Parece que con la estrategia de <code>caret</code> hemos conseguido un mejor modelo predictivo gracias, sobre todo, a la posibilidad de buscar el mejor hiperparámetro haciend <em>fine tuning</em>.</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="árboles-de-decisión.html#cb220-1" aria-hidden="true" tabindex="-1"></a>oj_scoreboard <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
 <span id="cb220-2"><a href="árboles-de-decisión.html#cb220-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">data.frame</span>(<span class="at">Modelo =</span> <span class="st">&quot;Single Tree&quot;</span>, </span>
@@ -1125,7 +1125,7 @@ AUC of roc1 AUC of roc2
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="árboles-de-decisión.html#cb221-1" aria-hidden="true" tabindex="-1"></a>cs_dat <span class="ot">&lt;-</span> ISLR<span class="sc">::</span>Carseats</span>
 <span id="cb221-2"><a href="árboles-de-decisión.html#cb221-2" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(cs_dat)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-154">Table 6.2: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-130">Table 6.2: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -1396,7 +1396,7 @@ node), split, n, deviance, yval
      7) Price&lt; 107.5 21   61.28200 12.240000 *</code></pre>
 <p>Las ventas pronosticadas en la raíz son las ventas medias para el conjunto de datos de entrenamiento, 7.5 (los valores corresponden a miles de dolares). La primera división está en <code>ShelveLoc = [Bad, Medium]</code> vs <code>Good</code> (calidad). Aquí está el diagrama de árbol sin podar.</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="árboles-de-decisión.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(cs_mdl_cart_full, <span class="at">yesno =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-157-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-133-1.png" width="672" /></p>
 <p>Cada caja muestra el valor predicho del nodo (media) y la proporción de observaciones que están en el nodo (o nodos secundarios).</p>
 <p><code>rpart ()</code> estima el árbol completo y utiliza validación cruzada para probar el rendimiento de los posibles hiperparámetros de complejidad. Como antes, <code>printcp ()</code> muestra los valores de cp candidatos que pueden verse en esta tabla. Estos datos pueden ser utilizados para decidir cómo podar el árbol.</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="árboles-de-decisión.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">printcp</span>(cs_mdl_cart_full)</span></code></pre></div>
@@ -1465,14 +1465,14 @@ n= 321
 16 0.01000000     15 0.3096278 0.5667561 0.03808991  0.5947744  under cap</code></pre>
 <p>Bien, entonces el árbol más simple es el que tiene CP = 0.02599265 (5 divisiones). También podemos usar <code>plotcp () para visualizar la relación entre</code>xerror<code>y</code>cp`.</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="árboles-de-decisión.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotcp</span>(cs_mdl_cart_full, <span class="at">upper =</span> <span class="st">&quot;splits&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-161-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-137-1.png" width="672" /></p>
 <p>La línea discontinua se establece en el mínimo <code>xerror + xstd</code>. El eje superior muestra el número de divisiones en el árbol. El error relativo más pequeño está en CP = 0.01 (15 divisiones), pero el CP máximo debajo de la línea discontinua (una desviación estándar por encima del error mínimo) está en CP = 0.02599265 (5 divisiones). Utilizamos entonces la función <code>prune ()</code> para podar el árbol especificando el coste-complejidad asociado a este CP.</p>
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="árboles-de-decisión.html#cb233-1" aria-hidden="true" tabindex="-1"></a>cs_mdl_cart <span class="ot">&lt;-</span> <span class="fu">prune</span>(</span>
 <span id="cb233-2"><a href="árboles-de-decisión.html#cb233-2" aria-hidden="true" tabindex="-1"></a>   cs_mdl_cart_full,</span>
 <span id="cb233-3"><a href="árboles-de-decisión.html#cb233-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">cp =</span> cs_mdl_cart_full<span class="sc">$</span>cptable[cs_mdl_cart_full<span class="sc">$</span>cptable[, <span class="dv">2</span>] <span class="sc">==</span> <span class="dv">5</span>, <span class="st">&quot;CP&quot;</span>]</span>
 <span id="cb233-4"><a href="árboles-de-decisión.html#cb233-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb233-5"><a href="árboles-de-decisión.html#cb233-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(cs_mdl_cart, <span class="at">yesno =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-162-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-138-1.png" width="672" /></p>
 <p>El indicador más “importante” de ventas es <code>ShelveLoc</code>. Estos son los valores de importancia del modelo:</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="árboles-de-decisión.html#cb234-1" aria-hidden="true" tabindex="-1"></a>cs_mdl_cart<span class="sc">$</span>variable.importance <span class="sc">%&gt;%</span> </span>
 <span id="cb234-2"><a href="árboles-de-decisión.html#cb234-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
@@ -1483,7 +1483,7 @@ n= 321
 <span id="cb234-7"><a href="árboles-de-decisión.html#cb234-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb234-8"><a href="árboles-de-decisión.html#cb234-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
 <span id="cb234-9"><a href="árboles-de-decisión.html#cb234-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Variable Importance with Simple Regression&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-163-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-139-1.png" width="672" /></p>
 <p>El indicador más importante de ventas es <code>ShelveLoc</code>, luego <code>Price</code>, luego <code>Age</code> (edad media de la población donde está la tienda). Todas estas variables aparecen en el modelo final. <code>CompPrice</code> (precio del competidor) también es relevante.</p>
 <p>El último paso es hacer predicciones sobre el conjunto de datos de validación. Cuando la variable respuesta es continua usamos:</p>
 <ul>
@@ -1506,7 +1506,7 @@ n= 321
 <span id="cb237-4"><a href="árboles-de-decisión.html#cb237-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
 <span id="cb237-5"><a href="árboles-de-decisión.html#cb237-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb237-6"><a href="árboles-de-decisión.html#cb237-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Carseats CART, predichos vs observados&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-165-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-141-1.png" width="672" /></p>
 <div id="entrenamiento-con-caret-1" class="section level3 hasAnchor" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Entrenamiento con <code>caret</code><a href="árboles-de-decisión.html#entrenamiento-con-caret-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>También podemos ajustar el modelo con <code>caret::train ()</code> especificando <code>method = "rpart"</code>. Construirmos el modelo usando 10-fold CV para optimizar el hiperparámetro CP.</p>
@@ -1584,13 +1584,13 @@ RMSE was used to select the optimal model using the smallest value.
 The final value used for the model was cp = 0.</code></pre>
 <p>En este ejemplo, parece que el árbol con mejor rendimiento es el que no ha sido podado.</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="árboles-de-decisión.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cs_mdl_cart2)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-170-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-146-1.png" width="672" /></p>
 <p>Este sería el modelo final</p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="árboles-de-decisión.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(cs_mdl_cart2<span class="sc">$</span>finalModel)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-171-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-147-1.png" width="672" /></p>
 <p>y estas las variables más importantes</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="árboles-de-decisión.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">varImp</span>(cs_mdl_cart2), <span class="at">main=</span><span class="st">&quot;Importancia de variables para Regresión&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-172-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-148-1.png" width="672" /></p>
 <p>Como siempre, debemos evaluar el modelo en nuestra muestra test:</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="árboles-de-decisión.html#cb247-1" aria-hidden="true" tabindex="-1"></a>cs_preds_cart2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(cs_mdl_cart2, cs_test, <span class="at">type =</span> <span class="st">&quot;raw&quot;</span>)</span>
 <span id="cb247-2"><a href="árboles-de-decisión.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Actual =</span> cs_test<span class="sc">$</span>Sales, <span class="at">Predicted =</span> cs_preds_cart2) <span class="sc">%&gt;%</span></span>
@@ -1599,7 +1599,7 @@ The final value used for the model was cp = 0.</code></pre>
 <span id="cb247-5"><a href="árboles-de-decisión.html#cb247-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">formula =</span> <span class="st">&quot;y ~ x&quot;</span>) <span class="sc">+</span></span>
 <span id="cb247-6"><a href="árboles-de-decisión.html#cb247-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb247-7"><a href="árboles-de-decisión.html#cb247-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Carseats CART, Predicted vs Actual (caret)&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-173-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-149-1.png" width="672" /></p>
 <p>Observamos como el modelo sobreestima en el extremo inferior y subestima en el extremo superior. Podemos calcular el RMSE para estos datos:</p>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="árboles-de-decisión.html#cb248-1" aria-hidden="true" tabindex="-1"></a>(cs_rmse_cart2 <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(<span class="at">pred =</span> cs_preds_cart2, <span class="at">obs =</span> cs_test<span class="sc">$</span>Sales))</span></code></pre></div>
 <pre><code>[1] 2.298331</code></pre>
@@ -1707,10 +1707,10 @@ Prediction  CH  MM
 <span id="cb255-2"><a href="árboles-de-decisión.html#cb255-2" aria-hidden="true" tabindex="-1"></a>roc.bag <span class="ot">&lt;-</span> <span class="fu">roc</span>(oj_test<span class="sc">$</span>Purchase, pred_bag2, <span class="at">print.auc=</span><span class="cn">TRUE</span>, </span>
 <span id="cb255-3"><a href="árboles-de-decisión.html#cb255-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">ci=</span><span class="cn">TRUE</span>,</span>
 <span id="cb255-4"><a href="árboles-de-decisión.html#cb255-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-178-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-154-1.png" width="672" /></p>
 <p>Veamos cuáles son las variables más importantes</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="árboles-de-decisión.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">varImp</span>(oj_mdl_bag), <span class="at">main=</span><span class="st">&quot;Importancia de variables con Bagging&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-179-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-155-1.png" width="672" /></p>
 <p>Esta es la comparación entre métodos</p>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="árboles-de-decisión.html#cb257-1" aria-hidden="true" tabindex="-1"></a>oj_scoreboard <span class="ot">&lt;-</span> <span class="fu">rbind</span>(oj_scoreboard,</span>
 <span id="cb257-2"><a href="árboles-de-decisión.html#cb257-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">data.frame</span>(<span class="at">Modelo =</span> <span class="st">&quot;Bagging&quot;</span>, </span>
@@ -1781,10 +1781,10 @@ Resampling results:
 <span id="cb262-4"><a href="árboles-de-decisión.html#cb262-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">formula =</span> <span class="st">&quot;y ~ x&quot;</span>) <span class="sc">+</span></span>
 <span id="cb262-5"><a href="árboles-de-decisión.html#cb262-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb262-6"><a href="árboles-de-decisión.html#cb262-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Carseats Bagging, Predicted vs Actual (caret)&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-183-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-159-1.png" width="672" /></p>
 <p>La importancia de las variables son:</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="árboles-de-decisión.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">varImp</span>(cs_mdl_bag), <span class="at">main=</span><span class="st">&quot;Importancia de variables con Bagging&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-184-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-160-1.png" width="672" /></p>
 <p>Y la comparación quedaría</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="árboles-de-decisión.html#cb264-1" aria-hidden="true" tabindex="-1"></a>cs_scoreboard <span class="ot">&lt;-</span> <span class="fu">rbind</span>(cs_scoreboard,</span>
 <span id="cb264-2"><a href="árboles-de-decisión.html#cb264-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">data.frame</span>(<span class="at">Modelo =</span> <span class="st">&quot;Bagging&quot;</span>, <span class="at">RMSE =</span> cs_rmse_bag)</span>
@@ -1865,7 +1865,7 @@ ROC was used to select the optimal model using the largest value.
 The final value used for the model was mtry = 7.</code></pre>
 <p>El valor de ROC más alto se da en <span class="math inline">\(m = 7\)</span> que es más alto de lo que esperábamos, pero fijémosnos que es un valor de ROC muy similar al que se obtiene con <span class="math inline">\(m=4\)</span>, por lo que por el principio de parsimonia podríamos usar dicho valor</p>
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="árboles-de-decisión.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(oj_mdl_rf)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-187-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-163-1.png" width="672" /></p>
 <p>También podemos visualizar los resultados con:</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="árboles-de-decisión.html#cb268-1" aria-hidden="true" tabindex="-1"></a>plot_rf <span class="ot">&lt;-</span> <span class="cf">function</span>(model) {</span>
 <span id="cb268-2"><a href="árboles-de-decisión.html#cb268-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span>
@@ -1880,7 +1880,7 @@ The final value used for the model was mtry = 7.</code></pre>
 <span id="cb268-11"><a href="árboles-de-decisión.html#cb268-11" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb268-12"><a href="árboles-de-decisión.html#cb268-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb268-13"><a href="árboles-de-decisión.html#cb268-13" aria-hidden="true" tabindex="-1"></a>oj_mdl_rf <span class="sc">%&gt;%</span> <span class="fu">plot_rf</span>()</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-188-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-164-1.png" width="672" /></p>
 <p>Podemos usar este modelo para hacer predicciones sobre la muestra test</p>
 <div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="árboles-de-decisión.html#cb269-1" aria-hidden="true" tabindex="-1"></a>pred_rf <span class="ot">&lt;-</span> <span class="fu">predict</span>(oj_mdl_rf, <span class="at">newdata =</span> oj_test, <span class="at">type =</span> <span class="st">&quot;raw&quot;</span>)</span>
 <span id="cb269-2"><a href="árboles-de-decisión.html#cb269-2" aria-hidden="true" tabindex="-1"></a>oj_cm_rf <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(pred_rf, oj_test<span class="sc">$</span>Purchase)</span>
@@ -1917,7 +1917,7 @@ Prediction  CH  MM
 <span id="cb271-2"><a href="árboles-de-decisión.html#cb271-2" aria-hidden="true" tabindex="-1"></a>roc.rf <span class="ot">&lt;-</span> <span class="fu">roc</span>(oj_test<span class="sc">$</span>Purchase, pred_bag2, <span class="at">print.auc=</span><span class="cn">TRUE</span>, </span>
 <span id="cb271-3"><a href="árboles-de-decisión.html#cb271-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">ci=</span><span class="cn">TRUE</span>,</span>
 <span id="cb271-4"><a href="árboles-de-decisión.html#cb271-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-190-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-166-1.png" width="672" /></p>
 <p>que compara con los modelos anteriores de esta forma:</p>
 <p>Y la comparación quedaría</p>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="árboles-de-decisión.html#cb272-1" aria-hidden="true" tabindex="-1"></a>oj_scoreboard <span class="ot">&lt;-</span> <span class="fu">rbind</span>(oj_scoreboard,</span>

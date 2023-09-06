@@ -1,6 +1,6 @@
-tab:unnamed-chunk-30
-tab:unnamed-chunk-126
-tab:unnamed-chunk-154
+tab:unnamed-chunk-6
+tab:unnamed-chunk-102
+tab:unnamed-chunk-130
 preámbulo
 instalación-de-librerías-necesarias-para-el-curso
 introducción-al-aprendizaje-automático

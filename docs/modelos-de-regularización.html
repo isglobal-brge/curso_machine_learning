@@ -23,7 +23,7 @@
 <meta name="author" content="Juan R González" />
 
 
-<meta name="date" content="2023-07-28" />
+<meta name="date" content="2023-09-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -268,8 +268,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>La regularización ridge es suave y la regularización lasso es áspera tal y como se puede ver en la siguiente figura</p>
 <p><img src="figures/lasso_ridge_1.jpg" /></p>
 <p>Es esta diferencia entre las restricciones suaves y ásperas lo que resulta en que el Lasso tenga estimaciones de coeficientes que son exactamente cero, mientras que Ridge no lo hace. Ilustramos esto aún más en la siguiente figura. La solución de mínimos cuadrados se marca como <span class="math inline">\(\hat{\beta}\)</span>, mientras que el diamante azul y el círculo representan las restricciones de regresión Lasso y Ridge (como en la Figura anterior). Si la penalización (<span class="math inline">\(t\)</span> en la figura anterior) es lo suficientemente grande (aumentar la penalización hace que el diamante y el círculo sean más grandes, respectivamente), entonces las regiones de restricción contendrán a <span class="math inline">\(\hat{\beta}\)</span>, por lo que las estimaciones de Ridge y Lasso serán iguales a las estimaciones de mínimos cuadrados.</p>
-<p>Las curvas que están centradas alrededor de <span class="math inline">\(\hat{\beta}\)</span> representan regiones de RSS constante. A medida que las elipses se alejan de las estimaciones de coeficientes de mínimos cuadrados, el RSS aumenta. Las estimaciones de coeficientes de regresión Lasso y Ridge se dan en el primer punto en el que una elipse toca la región de restricción.</p>
-<p><img src="figures/lasso_ridge_1.jpg" /></p>
+<p>Las curvas que están centradas alrededor de <span class="math inline">\(\hat{\beta}\)</span> representan regiones de RSS constante. A medida que las elipses se alejan de las estimaciones de coeficientes de mínimos cuadrados, el RSS aumenta. Las estimaciones de coeficientes de regresión Lasso y Ridge se dan en el primer punto en el que una elipse toca la región de restricción. Observamos como la estimación de <span class="math inline">\(\beta_2\)</span> sería distinta para la Ridge regression.</p>
+<p><img src="figures/lasso_ridge.jpg" /></p>
 <p>La regularización proporciona varios beneficios:</p>
 <ul>
 <li>Ayuda a prevenir el sobreajuste al reducir la complejidad del modelo.</li>
@@ -335,11 +335,13 @@ Por tanto no se pueden incluir directamente predictores categóricos, habrá que
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="modelos-de-regularización.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/breast.Rdata&quot;</span>)</span></code></pre></div>
 <p>Ahora debemos extraer la matriz de datos <span class="math inline">\(x\)</span> (variables independientes) y el vector con la variable que queremos predecir <span class="math inline">\(y\)</span> (<em>outcome</em>). Recordemos que las variables son las siguientes:</p>
 <div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="modelos-de-regularización.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(breast_train_prep)</span></code></pre></div>
-<pre><code> [1] &quot;texture_mean&quot;            &quot;area_mean&quot;               &quot;smoothness_mean&quot;         &quot;compactness_mean&quot;       
- [5] &quot;symmetry_mean&quot;           &quot;fractal_dimension_mean&quot;  &quot;texture_se&quot;              &quot;area_se&quot;                
- [9] &quot;smoothness_se&quot;           &quot;compactness_se&quot;          &quot;concavity_se&quot;            &quot;concave points_se&quot;      
-[13] &quot;symmetry_se&quot;             &quot;fractal_dimension_se&quot;    &quot;smoothness_worst&quot;        &quot;compactness_worst&quot;      
-[17] &quot;concave points_worst&quot;    &quot;symmetry_worst&quot;          &quot;fractal_dimension_worst&quot; &quot;diagnosis&quot;              </code></pre>
+<pre><code> [1] &quot;texture_mean&quot;            &quot;area_mean&quot;               &quot;smoothness_mean&quot;        
+ [4] &quot;compactness_mean&quot;        &quot;symmetry_mean&quot;           &quot;fractal_dimension_mean&quot; 
+ [7] &quot;texture_se&quot;              &quot;area_se&quot;                 &quot;smoothness_se&quot;          
+[10] &quot;compactness_se&quot;          &quot;concavity_se&quot;            &quot;concave points_se&quot;      
+[13] &quot;symmetry_se&quot;             &quot;fractal_dimension_se&quot;    &quot;smoothness_worst&quot;       
+[16] &quot;compactness_worst&quot;       &quot;concave points_worst&quot;    &quot;symmetry_worst&quot;         
+[19] &quot;fractal_dimension_worst&quot; &quot;diagnosis&quot;              </code></pre>
 <div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="modelos-de-regularización.html#cb313-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(breast_train_prep[, <span class="sc">-</span><span class="fu">ncol</span>(breast_train_prep)])</span>
 <span id="cb313-2"><a href="modelos-de-regularización.html#cb313-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> breast_train_prep<span class="sc">$</span>diagnosis</span></code></pre></div>
 <p>También podemos extraer x de forma más “clara” con tidyverse</p>
@@ -352,7 +354,7 @@ Por tanto no se pueden incluir directamente predictores categóricos, habrá que
 <div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="modelos-de-regularización.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
 <span id="cb316-2"><a href="modelos-de-regularización.html#cb316-2" aria-hidden="true" tabindex="-1"></a>fit.ridge <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">family =</span> binomial)</span>
 <span id="cb316-3"><a href="modelos-de-regularización.html#cb316-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit.ridge, <span class="at">xvar =</span> <span class="st">&quot;lambda&quot;</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-220-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-196-1.png" width="672" /></p>
 <p>Podemos obtener el modelo o predicciones para un valor concreto de <span class="math inline">\(\lambda\)</span>:</p>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="modelos-de-regularización.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(fit.ridge, <span class="at">s =</span> <span class="dv">2</span>) <span class="co"># lambda = 2</span></span></code></pre></div>
 <pre><code>20 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
@@ -381,7 +383,7 @@ fractal_dimension_worst  0.0395917038</code></pre>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="modelos-de-regularización.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
 <span id="cb319-2"><a href="modelos-de-regularización.html#cb319-2" aria-hidden="true" tabindex="-1"></a>cv.ridge <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
 <span id="cb319-3"><a href="modelos-de-regularización.html#cb319-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.ridge)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-222-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-198-1.png" width="672" /></p>
 <p>En este caso el parámetro óptimo (según la regla de un error estándar) sería:</p>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="modelos-de-regularización.html#cb320-1" aria-hidden="true" tabindex="-1"></a>cv.ridge<span class="sc">$</span>lambda<span class="fl">.1</span>se</span></code></pre></div>
 <pre><code>[1] 0.05646944</code></pre>
@@ -455,11 +457,11 @@ Pero en este caso lo haremos al mismo tiempo que seleccionamos el parámetro de 
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="modelos-de-regularización.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
 <span id="cb328-2"><a href="modelos-de-regularización.html#cb328-2" aria-hidden="true" tabindex="-1"></a>cv.lasso <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
 <span id="cb328-3"><a href="modelos-de-regularización.html#cb328-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.lasso)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-226-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-202-1.png" width="672" /></p>
 <div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="modelos-de-regularización.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.lasso<span class="sc">$</span>glmnet.fit, <span class="at">xvar =</span> <span class="st">&quot;lambda&quot;</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)    </span>
 <span id="cb329-2"><a href="modelos-de-regularización.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">log</span>(cv.lasso<span class="sc">$</span>lambda<span class="fl">.1</span>se), <span class="at">lty =</span> <span class="dv">2</span>)</span>
 <span id="cb329-3"><a href="modelos-de-regularización.html#cb329-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">log</span>(cv.lasso<span class="sc">$</span>lambda.min), <span class="at">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-226-2.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-202-2.png" width="672" /></p>
 <p>El modelo resultante (oneSE rule) solo contiene 9 variables explicativas:</p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="modelos-de-regularización.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(cv.lasso) <span class="co"># s = &quot;lambda.1se&quot;</span></span></code></pre></div>
 <pre><code>20 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
@@ -755,7 +757,7 @@ Resampling results across tuning parameters:
 Accuracy was used to select the optimal model using the largest value.
 The final values used for the model were alpha = 0.1111111 and lambda = 0.01052632.</code></pre>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="modelos-de-regularización.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(caret.glmnet, <span class="at">highlight =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-229-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-205-1.png" width="672" /></p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="modelos-de-regularización.html#cb339-1" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(caret.glmnet<span class="sc">$</span>finalModel, newx, </span>
 <span id="cb339-2"><a href="modelos-de-regularización.html#cb339-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">type=</span><span class="st">&quot;class&quot;</span>, <span class="at">s =</span> caret.glmnet<span class="sc">$</span>finalModel<span class="sc">$</span>lambdaOpt)</span>
 <span id="cb339-3"><a href="modelos-de-regularización.html#cb339-3" aria-hidden="true" tabindex="-1"></a></span>

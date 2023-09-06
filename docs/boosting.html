@@ -23,7 +23,7 @@
 <meta name="author" content="Juan R González" />
 
 
-<meta name="date" content="2023-07-28" />
+<meta name="date" content="2023-09-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -408,7 +408,7 @@ Este enfoque da como resultado una mejora lenta y sucesiva del modelo ajustado, 
 <p>Nuestros resultados muestra un SSE obtenido mediante validación cruzada de 1.28 que se alcanza con 120 árboles.</p>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="boosting.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot error curve</span></span>
 <span id="cb275-2"><a href="boosting.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gbm.perf</span>(md1_gbm, <span class="at">method =</span> <span class="st">&quot;cv&quot;</span>)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-193-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-169-1.png" width="672" /></p>
 <pre><code>[1] 120</code></pre>
 <p>También podemos hacer lo mismo con <code>caret</code></p>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="boosting.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
@@ -459,10 +459,11 @@ Resampling results across tuning parameters:
   5                  250      1.273024  0.8124672  1.0213099
 
 Tuning parameter &#39;shrinkage&#39; was held constant at a value of 0.1
-Tuning parameter &#39;n.minobsinnode&#39; was held
- constant at a value of 10
+Tuning parameter &#39;n.minobsinnode&#39;
+ was held constant at a value of 10
 RMSE was used to select the optimal model using the smallest value.
-The final values used for the model were n.trees = 250, interaction.depth = 1, shrinkage = 0.1 and n.minobsinnode = 10.</code></pre>
+The final values used for the model were n.trees = 250, interaction.depth = 1, shrinkage = 0.1
+ and n.minobsinnode = 10.</code></pre>
 <p>Que no es tan fino y se obtienen diferentes resultados</p>
 </div>
 <div id="estrategia-general-de-tuning" class="section level3 hasAnchor" number="7.3.3">
@@ -513,12 +514,12 @@ The final values used for the model were n.trees = 250, interaction.depth = 1, s
 <span id="cb279-33"><a href="boosting.html#cb279-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb279-34"><a href="boosting.html#cb279-34" aria-hidden="true" tabindex="-1"></a><span class="co"># results</span></span>
 <span id="cb279-35"><a href="boosting.html#cb279-35" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(hyper_grid, RMSE)</span></code></pre></div>
-<pre><code>  learning_rate     RMSE trees  Time
-1         0.050 1.217178   260 10.12
-2         0.100 1.229606    97  7.10
-3         0.300 1.324525    49  7.16
-4         0.010 1.380635   500  9.62
-5         0.005 1.717680   500 10.11</code></pre>
+<pre><code>  learning_rate     RMSE trees Time
+1         0.050 1.217178   260 5.81
+2         0.100 1.229606    97 5.71
+3         0.300 1.324525    49 6.36
+4         0.010 1.380635   500 5.92
+5         0.005 1.717680   500 5.64</code></pre>
 <p>A continuación, estableceremos nuestra tasa de aprendizaje en el nivel óptimo (0.05) y el número de árboles a 260 para ajustar los hiperparámetros específicos del árbol (<code>interaction.depth</code> y <code>n.minobsinnode</code>). El ajuste de los parámetros específicos del árbol nos proporciona una reducción adicional del RMSE si consideramos <code>n.minobsinnode=5</code> (afinamos más en casos raros).</p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="boosting.html#cb281-1" aria-hidden="true" tabindex="-1"></a>hyper_grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
 <span id="cb281-2"><a href="boosting.html#cb281-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">n.trees =</span> <span class="dv">250</span>,</span>
@@ -682,10 +683,11 @@ Resampling results:
   1.344485  0.7888624  1.059424
 
 Tuning parameter &#39;nrounds&#39; was held constant at a value of 200
-Tuning parameter &#39;max_depth&#39; was held constant at
- parameter &#39;min_child_weight&#39; was held constant at a value of 0
-Tuning parameter &#39;subsample&#39; was held constant at
- a value of 0.5</code></pre>
+Tuning parameter &#39;max_depth&#39; was
+ was held constant at a value of 0.75
+Tuning parameter &#39;min_child_weight&#39; was held constant at a
+ value of 0
+Tuning parameter &#39;subsample&#39; was held constant at a value of 0.5</code></pre>
 <p>El paquete <code>h2o</code> también ofrece una implementación de XGBoost. Mostraremos cómo usar <code>xgboost</code>.</p>
 <p>Como se mencionó anteriormente, <code>xgboost</code> permite los hiperparámetros tradicionales para <em>boosting</em> y árboles de decisión que discutimos hemos descrito en la Sección @ref{boostingHiperparam} . Sin embargo, <code>xgboost</code> también proporciona hiperparámetros adicionales que pueden ayudar a reducir las posibilidades de sobreajuste, lo que genera menos variabilidad de predicción y, por lo tanto, una mayor precisión.</p>
 <div id="reguralización" class="section level3 hasAnchor" number="7.5.1">
@@ -838,7 +840,7 @@ evaluation_log:
     3944  0.2763516</code></pre>
 <p><strong>NOTA</strong>: Podemos obtener un ránking con la importancia de cada variable</p>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="boosting.html#cb292-1" aria-hidden="true" tabindex="-1"></a>vip<span class="sc">::</span><span class="fu">vip</span>(xgb.fit.final) </span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-203-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-179-1.png" width="672" /></p>
 </div>
 </div>
 <div id="otros-algoritmos-gbm" class="section level2 hasAnchor" number="7.6">

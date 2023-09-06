@@ -23,7 +23,7 @@
 <meta name="author" content="Juan R González" />
 
 
-<meta name="date" content="2023-07-28" />
+<meta name="date" content="2023-09-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -429,21 +429,21 @@ y</p>
 <span id="cb7-8"><a href="validación-cruzada.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(carseats_miss)</span></code></pre></div>
 <pre><code>Rows: 400
 Columns: 11
-$ Sales       &lt;dbl&gt; 9.50, 11.22, 10.06, 7.40, 4.15, 10.81, 6.63, 11.85, 6.54, 4.69, 9.01, 11.96, 3.98, 10.96, 11.17, …
-$ CompPrice   &lt;dbl&gt; 138, 111, 113, 117, 141, 124, 115, NA, NA, NA, 121, 117, NA, 115, 107, NA, 118, NA, 110, 129, 125…
-$ Income      &lt;dbl&gt; 73, 48, 35, 100, 64, 113, NA, 81, 110, 113, 78, 94, NA, 28, 117, 95, 32, 74, 110, 76, NA, NA, 46,…
-$ Advertising &lt;dbl&gt; 11, 16, NA, 4, 3, 13, NA, 15, 0, 0, 9, 4, 2, NA, 11, 5, NA, 13, 0, 16, 2, 12, 6, 0, 16, 0, 11, 0,…
-$ Population  &lt;dbl&gt; 276, 260, 269, NA, 340, 501, 45, 425, 108, 131, 150, 503, NA, 29, 148, 400, 284, 251, 408, 58, 36…
-$ Price       &lt;dbl&gt; 120, NA, NA, 97, 128, 72, 108, 120, NA, 124, 100, NA, NA, NA, 118, 144, 110, 131, 68, 121, NA, 10…
-$ ShelveLoc   &lt;fct&gt; Bad, NA, Good, NA, Bad, Bad, Good, NA, Good, Good, Bad, Medium, NA, Medium, Medium, Good, Medium,…
-$ Age         &lt;dbl&gt; 42, 65, NA, 55, 38, NA, 71, 67, 76, 76, 26, 50, NA, 53, 52, 76, 63, 52, 46, 69, NA, NA, NA, 79, 4…
-$ Education   &lt;dbl&gt; NA, 10, 12, NA, 13, 16, 15, 10, 10, 17, 10, 13, NA, NA, NA, 18, 13, 10, 17, 12, 18, NA, NA, NA, 1…
-$ Urban       &lt;fct&gt; NA, Yes, Yes, Yes, Yes, NA, NA, Yes, No, NA, NA, Yes, Yes, Yes, Yes, No, Yes, Yes, No, NA, Yes, N…
-$ US          &lt;fct&gt; Yes, Yes, Yes, Yes, No, Yes, No, Yes, NA, Yes, Yes, Yes, No, Yes, Yes, No, No, NA, Yes, Yes, NA, …</code></pre>
+$ Sales       &lt;dbl&gt; 9.50, 11.22, 10.06, 7.40, 4.15, 10.81, 6.63, 11.85, 6.54, 4.69, 9.01, 11.96, 3.98…
+$ CompPrice   &lt;dbl&gt; 138, 111, 113, 117, 141, 124, 115, NA, NA, NA, 121, 117, NA, 115, 107, NA, 118, N…
+$ Income      &lt;dbl&gt; 73, 48, 35, 100, 64, 113, NA, 81, 110, 113, 78, 94, NA, 28, 117, 95, 32, 74, 110,…
+$ Advertising &lt;dbl&gt; 11, 16, NA, 4, 3, 13, NA, 15, 0, 0, 9, 4, 2, NA, 11, 5, NA, 13, 0, 16, 2, 12, 6, …
+$ Population  &lt;dbl&gt; 276, 260, 269, NA, 340, 501, 45, 425, 108, 131, 150, 503, NA, 29, 148, 400, 284, …
+$ Price       &lt;dbl&gt; 120, NA, NA, 97, 128, 72, 108, 120, NA, 124, 100, NA, NA, NA, 118, 144, 110, 131,…
+$ ShelveLoc   &lt;fct&gt; Bad, NA, Good, NA, Bad, Bad, Good, NA, Good, Good, Bad, Medium, NA, Medium, Mediu…
+$ Age         &lt;dbl&gt; 42, 65, NA, 55, 38, NA, 71, 67, 76, 76, 26, 50, NA, 53, 52, 76, 63, 52, 46, 69, N…
+$ Education   &lt;dbl&gt; NA, 10, 12, NA, 13, 16, 15, 10, 10, 17, 10, 13, NA, NA, NA, 18, 13, 10, 17, 12, 1…
+$ Urban       &lt;fct&gt; NA, Yes, Yes, Yes, Yes, NA, NA, Yes, No, NA, NA, Yes, Yes, Yes, Yes, No, Yes, Yes…
+$ US          &lt;fct&gt; Yes, Yes, Yes, Yes, No, Yes, No, Yes, NA, Yes, Yes, Yes, No, Yes, Yes, No, No, NA…</code></pre>
 <p>Observamos que hay datos faltantes. Podemos tener una estadística global de la falta de información que hay en nuestros tanto de forma numérica mediante la librería <code>skimr</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="validación-cruzada.html#cb9-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(carseats_miss)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-30">Table 3.1: </span>Data summary</caption>
+<caption><span id="tab:unnamed-chunk-6">Table 3.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -678,7 +678,7 @@ $ US          &lt;fct&gt; Yes, Yes, Yes, Yes, No, Yes, No, Yes, NA, Yes, Yes, Ye
 <p>La librería <code>VIM</code> nos puede ayudar a tener esta información de forma gráfica:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="validación-cruzada.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span>
 <span id="cb14-2"><a href="validación-cruzada.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aggr</span>(carseats_miss)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Ahora faltan muchas observaciones. Cuando ajustamos un modelo de regresión para la variable Sales observamos que <code>lm ()</code> analiza casos completos y se estima un modelo basado en un subconjunto muy pequeño de datos.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="validación-cruzada.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Sales <span class="sc">~</span> CompPrice <span class="sc">+</span> Income <span class="sc">+</span> Advertising <span class="sc">+</span> Population <span class="sc">+</span> Price, <span class="at">data =</span> carseats_miss)</span></code></pre></div>
 <pre><code>
@@ -692,13 +692,13 @@ Coefficients:
 <p>Sólo tenemos 93 observaciones de las 400 originales! Demostraremos la imputación múltiple usando la función <code>mice ()</code> de la librería <code>mice</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="validación-cruzada.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
 <span id="cb17-2"><a href="validación-cruzada.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Carseats)</span></code></pre></div>
-<pre><code> [1] &quot;Sales&quot;       &quot;CompPrice&quot;   &quot;Income&quot;      &quot;Advertising&quot; &quot;Population&quot;  &quot;Price&quot;       &quot;ShelveLoc&quot;   &quot;Age&quot;        
- [9] &quot;Education&quot;   &quot;Urban&quot;       &quot;US&quot;         </code></pre>
+<pre><code> [1] &quot;Sales&quot;       &quot;CompPrice&quot;   &quot;Income&quot;      &quot;Advertising&quot; &quot;Population&quot;  &quot;Price&quot;       &quot;ShelveLoc&quot;  
+ [8] &quot;Age&quot;         &quot;Education&quot;   &quot;Urban&quot;       &quot;US&quot;         </code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="validación-cruzada.html#cb19-1" aria-hidden="true" tabindex="-1"></a>carseats_imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(carseats_miss, <span class="at">printFlag =</span> F)</span></code></pre></div>
 <p>El objeto <code>carseats_imp</code> incluye (entre muchas otras cosas) <span class="math inline">\(m\)</span> conjuntos de datos imputados (la configuración predeterminada es <span class="math inline">\(m\)</span> = 5). Los conjuntos de datos imputados difieren porque las imputaciones se extraen aleatoriamente de distribuciones de valores plausibles. Podemos visualizar la variabilidad de los predictores en estos conjuntos de datos imputados usando la función <code>densityplot ()</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="validación-cruzada.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
 <span id="cb20-2"><a href="validación-cruzada.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">densityplot</span>(carseats_imp)</span></code></pre></div>
-<p><img src="fig_out/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="fig_out/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Las líneas azules continuas representan la distribución real de los predictores, mientras que las líneas rojas muestran las distribuciones imputadas. El siguiente paso es usar estos conjuntos de datos imputados para promediar los <span class="math inline">\(\beta\)</span>s y los SE utilizando la función <code>pool ()</code> de la librería <code>mice</code>.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="validación-cruzada.html#cb21-1" aria-hidden="true" tabindex="-1"></a>carseats_model_imp <span class="ot">&lt;-</span> <span class="fu">with</span>(<span class="at">data =</span> carseats_imp, </span>
 <span id="cb21-2"><a href="validación-cruzada.html#cb21-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">exp =</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> CompPrice <span class="sc">+</span> Income <span class="sc">+</span> Advertising <span class="sc">+</span> Population <span class="sc">+</span> Price))</span>

@@ -16,10 +16,10 @@ La regularización ridge es suave y la regularización lasso es áspera tal y co
 
 Es esta diferencia entre las restricciones suaves y ásperas lo que resulta en que el Lasso tenga estimaciones de coeficientes que son exactamente cero, mientras que Ridge no lo hace. Ilustramos esto aún más en la siguiente figura. La solución de mínimos cuadrados se marca como $\hat{\beta}$, mientras que el diamante azul y el círculo representan las restricciones de regresión Lasso y Ridge (como en la Figura anterior). Si la penalización ($t$ en la figura anterior) es lo suficientemente grande (aumentar la penalización hace que el diamante y el círculo sean más grandes, respectivamente), entonces las regiones de restricción contendrán a $\hat{\beta}$, por lo que las estimaciones de Ridge y Lasso serán iguales a las estimaciones de mínimos cuadrados.
 
-Las curvas que están centradas alrededor de $\hat{\beta}$ representan regiones de RSS constante. A medida que las elipses se alejan de las estimaciones de coeficientes de mínimos cuadrados, el RSS aumenta. Las estimaciones de coeficientes de regresión Lasso y Ridge se dan en el primer punto en el que una elipse toca la región de restricción.
+Las curvas que están centradas alrededor de $\hat{\beta}$ representan regiones de RSS constante. A medida que las elipses se alejan de las estimaciones de coeficientes de mínimos cuadrados, el RSS aumenta. Las estimaciones de coeficientes de regresión Lasso y Ridge se dan en el primer punto en el que una elipse toca la región de restricción. Observamos como la estimación de $\beta_2$ sería distinta para la Ridge regression.
 
 
-![](figures/lasso_ridge_1.jpg)
+![](figures/lasso_ridge.jpg)
 
 
 La regularización proporciona varios beneficios:
